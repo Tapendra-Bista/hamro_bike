@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "1084091221851",
+    "project_id": "hamrobike-e51e7",
+    "storage_bucket": "hamrobike-e51e7.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1084091221851:android:9bffb05d8cea77b6f03c7e",
+        "android_client_info": {
+          "package_name": "com.example.hamro_bike"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1084091221851-dog76as3oelg9994k55hqpb4l23giogh.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.hamro_bike",
+            "certificate_hash": "6e998ca7fff3a7077d2447849c590fda6f344008"
+          }
+        },
+        {
+          "client_id": "1084091221851-j2u8i3psg8fgqde850dar50vqbbgr3ap.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCovFPAs9RQ1SmRYgyGQDy8vtdnpiXsFYs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1084091221851-j2u8i3psg8fgqde850dar50vqbbgr3ap.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1084091221851-fn31bnj2f4c2bpbnluohir38r97cuh4c.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.hamroBike"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

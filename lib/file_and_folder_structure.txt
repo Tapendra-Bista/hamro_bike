@@ -1,0 +1,80 @@
+lib/
+├── main.dart
+├── app.dart                        # Root widget with themes, localization, GetMaterialApp
+│
+├── common/    
+│   ├── extensions/
+│   │   ├── extensions_widget.dart
+│   │   └── extensions_buildcontext.dart                     # Shared resources
+│   ├── constants/
+│   │   ├── app_colors.dart
+│   │   └── app_strings.dart
+│   ├── theme/
+│   │   └── app_theme.dart
+│   ├── widgets/                    # Reusable widgets across features
+│   │   └── custom_button.dart
+│   ├── localization/
+│   │   ├── translations.dart
+│   │   ├── en_US.dart
+│   │   └── np_NP.dart
+│   └── utils/
+│       ├── validators.dart
+│       ├── date_formatter.dart
+│       ├── string_utils.dart
+│       ├── device_utils.dart
+│       ├── debouncer.dart
+│       ├── logger.dart
+│       └── snackbar_util.dart
+│
+├── services/                       # App-wide services
+│   ├── storage/
+│   │   ├── storage_service.dart
+│   │   ├── shared_prefs_storage.dart
+│   │   └── get_storage_service.dart
+│   ├── network/
+│   │   ├── api_service.dart
+│   │   ├── network_client.dart
+│   │   └── auth_interceptor.dart
+│   ├── auth/
+│   │   ├── auth_service.dart
+│   │   └── session_manager.dart
+│   ├── notifications/
+│   │   ├── notification_service.dart
+│   │   └── firebase_messaging_handler.dart
+│   └── ... (other services like analytics, connectivity, location)
+│
+├── features/                        # Feature-first structure
+│   ├── home/
+│   │   ├── models/
+│   │   │   └── user_model.dart
+│   │   ├── repository/
+│   │   │   └── home_repository.dart
+│   │   ├── controllers/
+│   │   │   └── home_controller.dart      # GetxController
+│   │   ├── bindings/
+│   │   │   └── home_binding.dart        # Inject controller for GetX
+│   │   ├── views/
+│   │   │   └── home_view.dart           # UI
+│   │   └── widgets/
+│   │       └── home_card.dart
+│   │
+│   ├── profile/
+│   │   ├── models/
+│   │   ├── repository/
+│   │   ├── controllers/
+│   │   │   └── profile_controller.dart
+│   │   ├── bindings/
+│   │   │   └── profile_binding.dart
+│   │   ├── views/
+│   │   │   └── profile_view.dart
+│   │   └── widgets/
+│   │       └── profile_card.dart
+│   │
+│   └── ... (other features)
+│
+├── bindings/                        # Global bindings
+│   └── initial_binding.dart          # Injects controllers/services needed app-wide
+│
+├── routes/
+│   ├── app_routes.dart               # String constants for routes
+│   └── app_pages.dart                # GetPage list with bindings
