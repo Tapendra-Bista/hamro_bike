@@ -28,7 +28,7 @@ class _ProfileImageState extends State<ProfileImage> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(vertical: 5.h),
+      padding: .symmetric(vertical: 5.h),
       width: double.infinity,
       decoration: BoxDecoration(color: ConstantColors.primaryButtonColor),
       child: Obx(() {
@@ -59,8 +59,8 @@ class _ProfileImageState extends State<ProfileImage> {
         return Skeletonizer(
           enabled: isLoading,
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: .start,
+            crossAxisAlignment: .center,
 
             children: [
               Gap(5.h),

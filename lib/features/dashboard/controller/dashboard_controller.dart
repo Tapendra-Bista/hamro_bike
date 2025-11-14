@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hamro_bike/features/bikes/screen/bikes_screen.dart';
 
 import '../../profile/screen/profile_screen.dart';
 
@@ -9,15 +10,15 @@ class DashboardController extends GetxController {
   final RxInt _selectedIndex = 0.obs;
 
   // getter
-  get selectedIndex => _selectedIndex.value;
+  int get selectedIndex => _selectedIndex.value;
 
   // setter
-  set selectedIndex(value) => _selectedIndex.value = value ?? 0;
+  set selectedIndex(int? value) => _selectedIndex.value = value ?? 0;
 }
 
 // page  List
 final List<Widget> dashboardPages = [
-  Center(child: Text('Bikes Page')),
+  BikesScreen(),
   Center(child: Text('Search Page')),
   Center(child: Text('Chat Page')),
   ProfileScreen(),

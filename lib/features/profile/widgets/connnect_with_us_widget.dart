@@ -13,22 +13,22 @@ class ConnectWithUs extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 11.w),
+      padding: .symmetric(horizontal: 11.w),
       child: Container(
-        padding: EdgeInsets.all(5.w),
-        width: double.infinity,
+        padding: .all(5.w),
+        width: .infinity,
 
         decoration: BoxDecoration(
           color: ConstantColors.containerColor,
-          borderRadius: BorderRadius.circular(12.r),
+          borderRadius: .circular(12.r),
         ),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: .start,
+          crossAxisAlignment: .start,
 
           children: [
             Padding(
-              padding: EdgeInsets.only(left: 7.w),
+              padding: .only(left: 7.w),
               child: Text(
                 ConstantStrings.connectWithUs,
                 style: context.textTheme.bodyLarge!.copyWith(fontSize: 22.sp),
@@ -36,7 +36,7 @@ class ConnectWithUs extends StatelessWidget {
             ),
             ListTile(
               leading: Container(
-                padding: EdgeInsets.all(12.r),
+                padding: .all(12.r),
                 decoration: BoxDecoration(
                   color: Colors.blue.withValues(alpha: 0.15),
                   borderRadius: BorderRadius.circular(12.r),
@@ -44,7 +44,7 @@ class ConnectWithUs extends StatelessWidget {
                 child: Icon(Iconsax.facebook_copy, color: Colors.blue),
               ),
               title: Text(
-              ConstantStrings.facebook,
+                ConstantStrings.facebook,
                 style: context.textTheme.bodyMedium,
               ),
               subtitle: Text(
@@ -75,27 +75,33 @@ class ConnectWithUs extends StatelessWidget {
                 ),
               ),
               leading: Container(
-                padding: EdgeInsets.all(12.r),
+                padding: .all(12.r),
                 decoration: BoxDecoration(
                   color: Colors.redAccent.withValues(alpha: 0.15),
                   borderRadius: BorderRadius.circular(12.r),
                 ),
                 child: Icon(Iconsax.instagram_copy, color: Colors.redAccent),
               ),
-              title: Text(ConstantStrings.instagram, style: context.textTheme.bodyMedium),
+              title: Text(
+                ConstantStrings.instagram,
+                style: context.textTheme.bodyMedium,
+              ),
             ),
             ListTile(
               leading: Container(
-                padding: EdgeInsets.all(12.r),
+                padding: .all(12.r),
                 decoration: BoxDecoration(
                   color: Colors.greenAccent.withValues(alpha: 0.15),
                   borderRadius: BorderRadius.circular(12.r),
                 ),
                 child: Icon(Iconsax.play_copy, color: Colors.greenAccent),
               ),
-              title: Text(ConstantStrings.rateUs, style: context.textTheme.bodyMedium),
+              title: Text(
+                ConstantStrings.rateUs,
+                style: context.textTheme.bodyMedium,
+              ),
               subtitle: Text(
-              ConstantStrings.helpUsImprove,
+                ConstantStrings.helpUsImprove,
                 style: context.textTheme.bodySmall,
               ),
               trailing: SizedBox(
@@ -123,14 +129,17 @@ class ConnectWithUs extends StatelessWidget {
                 ),
               ),
               leading: Container(
-                padding: EdgeInsets.all(12.r),
+                padding: .all(12.r),
                 decoration: BoxDecoration(
                   color: Colors.red.withValues(alpha: 0.15),
                   borderRadius: BorderRadius.circular(12.r),
                 ),
                 child: Icon(Iconsax.information_copy, color: Colors.red),
               ),
-              title: Text(ConstantStrings.aboutUs, style: context.textTheme.bodyMedium),
+              title: Text(
+                ConstantStrings.aboutUs,
+                style: context.textTheme.bodyMedium,
+              ),
             ),
           ],
         ),

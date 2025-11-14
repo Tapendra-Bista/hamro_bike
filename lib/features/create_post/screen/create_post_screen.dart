@@ -5,9 +5,9 @@ import 'package:get/get.dart';
 import 'package:hamro_bike/common/constant/constant_colors.dart';
 import 'package:hamro_bike/common/constant/constant_strings.dart';
 import 'package:hamro_bike/common/extensions/extensions_buildcontext.dart';
-import 'package:hamro_bike/common/widgets/loading.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
+
 import '../controller/create_post_controller.dart';
 import '../widgets/part_one.dart';
 import '../widgets/part_three.dart';
@@ -38,16 +38,6 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
         ),
       ),
       body: Obx(() {
-        WidgetsBinding.instance.addPostFrameCallback((_) {
-          if (controller.isLoading) {
-            loading(context, 'Processing');
-          } else {
-            if (Get.isDialogOpen ?? false) {
-              Get.back();
-            }
-          }
-        });
-
         return Stack(
           children: [
             Positioned.fill(
@@ -55,8 +45,8 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                 child: SingleChildScrollView(
                   physics: const BouncingScrollPhysics(),
                   child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: .start,
+                    crossAxisAlignment: .start,
                     children: [
                       Gap(5.h),
                       StepProgressIndicator(
@@ -76,8 +66,11 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                       IndexedStack(
                         index: controller.currentStep,
                         children: [
+                          // title,price, years , bike name
                           PartOne(controller: controller),
+                          // description, location , 
                           PartTwo(controller: controller),
+                          // images upload
                           PartThree(controller: controller),
                         ],
                       ),
@@ -86,6 +79,45 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                 ),
               ),
             ),
+
+            if (controller.isLoading)
+              Positioned.fill(
+                child: Container(
+                  color: ConstantColors.backgroundColor,
+                  child: Center(
+                    child: Container(
+                      padding: .symmetric(horizontal: 18.w, vertical: 14.h),
+                      decoration: BoxDecoration(
+                        color: ConstantColors.backgroundColor,
+                        borderRadius: BorderRadius.circular(14.r),
+                        boxShadow: [
+                          BoxShadow(
+                            color: ConstantColors.backgroundColor,
+                            blurRadius: 12,
+                            offset: const Offset(0, 4),
+                          ),
+                        ],
+                      ),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          const CircularProgressIndicator(
+                            strokeWidth: 3,
+                            color: ConstantColors.primaryButtonColor,
+                          ),
+                          SizedBox(width: 12.w),
+                          Text(
+                            ConstantStrings.processing,
+                            style: context.textTheme.bodyMedium?.copyWith(
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ),
           ],
         );
       }),

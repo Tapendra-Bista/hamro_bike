@@ -6,9 +6,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:hamro_bike/common/constant/constant_colors.dart';
+import 'package:hamro_bike/common/constant/constant_strings.dart';
 import 'package:hamro_bike/common/extensions/extensions_buildcontext.dart';
 import 'package:hamro_bike/common/extensions/extensions_widget.dart';
 import 'package:hamro_bike/common/widgets/snackbar.dart';
+import 'package:hamro_bike/routes/routes_name.dart';
 
 import '../controller/create_post_controller.dart';
 
@@ -22,14 +24,14 @@ class PartThree extends StatelessWidget {
     return Form(
       child: Center(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: .start,
+          crossAxisAlignment: .center,
           children: [
             Gap(50.h),
-            InkWell(
-              onTap: () => controller.pickImages(),
-              child: Obx(
-                () => controller.tempImagePaths.isNotEmpty
+            Obx(() {
+              return InkWell(
+                onTap: () => controller.pickImages(),
+                child: controller.tempImagePaths.isNotEmpty
                     ? FlutterCarousel(
                         items: controller.tempImagePaths
                             .map(
@@ -52,12 +54,12 @@ class PartThree extends StatelessWidget {
                         size: 110.sp,
                         color: ConstantColors.primaryTextColor,
                       ),
-              ),
-            ),
+              );
+            }),
 
             Gap(150.h),
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              mainAxisAlignment: .spaceEvenly,
               children: [
                 ElevatedButton(
                   style: context.iconButtonTheme.style!.copyWith(
@@ -69,7 +71,10 @@ class PartThree extends StatelessWidget {
                     ),
                   ),
                   onPressed: () => controller.currentStep = 1,
-                  child: Text("Previous", style: context.textTheme.bodyMedium),
+                  child: Text(
+                    ConstantStrings.previous,
+                    style: context.textTheme.bodyMedium,
+                  ),
                 ),
                 ElevatedButton(
                   style: context.iconButtonTheme.style!.copyWith(
@@ -81,14 +86,31 @@ class PartThree extends StatelessWidget {
                     ),
                   ),
                   onPressed: () async {
+                    if (controller.isLoading) return;
                     if (controller.tempImagePaths.isEmpty) {
-                      snackbar('Please upload at least one image.', Colors.red);
+                      snackbar(ConstantStrings.imageWarning, Colors.red);
                       return;
                     }
-
-                    await controller.postData();
+                    final success = await controller.postData();
+                    if (success) {
+                      // Delay slightly to ensure current build/frame settles (fixes visitChildElements errors
+                      // that can happen when certain parent routes (e.g. SliverAppBar) are mid-build).
+                      Future.delayed(const Duration(milliseconds: 300), () {
+                        Get.offAllNamed(RoutesName.dashboard);
+                        // Show snackbar shortly after navigation
+                        Future.delayed(const Duration(milliseconds: 150), () {
+                          snackbar(
+                            ConstantStrings.postCreateSuccess,
+                            ConstantColors.primaryButtonColor,
+                          );
+                        });
+                      });
+                    }
                   },
-                  child: Text("Submit", style: context.textTheme.bodyMedium),
+                  child: Text(
+                    ConstantStrings.submit,
+                    style: context.textTheme.bodyMedium,
+                  ),
                 ),
               ],
             ),

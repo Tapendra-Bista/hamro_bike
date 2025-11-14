@@ -5,14 +5,7 @@ import '../../../common/utils/timestamps_convertor.dart';
 part 'profile_model.freezed.dart';
 part 'profile_model.g.dart';
 
-/*      final userData = <String, dynamic>{
-        'uid': user.uid,
-        'email': user.email ?? '',
-        'name': user.displayName ?? '',
-        'profile': user.photoURL ?? '',
-        'createdAt': DateTime.now(),
-        // Add other user fields as necessary
-      };*/
+
 @freezed
 abstract class ProfileModel with _$ProfileModel {
   const factory ProfileModel({

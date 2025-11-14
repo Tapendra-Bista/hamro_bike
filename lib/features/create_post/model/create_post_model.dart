@@ -6,12 +6,14 @@ part 'create_post_model.g.dart';
 @freezed
 abstract class CreatePostModel with _$CreatePostModel {
   const factory CreatePostModel({
+    required String postId,
     required String uId,
     required String title,
     required String vehicleName,
     required String description,
     required double price,
     required String location,
+    @Default('available') String status,
     required List<String> imageUrls,
     @TimestampConverter()
     required DateTime postDate,

@@ -26,7 +26,7 @@ class DashboardScreen extends GetView<DashboardController> {
             controller.selectedIndex = index;
           },
           gap: 8.w,
-          padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 8.h),
+          padding: .symmetric(horizontal: 10.w, vertical: 8.h),
           backgroundColor: ConstantColors.backgroundColor,
           color: ConstantColors.secondaryTextColor,
           activeColor: Colors.white,
@@ -40,7 +40,7 @@ class DashboardScreen extends GetView<DashboardController> {
 
           tabs: [
             GButton(
-              padding: EdgeInsets.all(15.r),
+              padding: .all(15.r),
               icon: Icons.directions_bike_outlined,
               text: ConstantStrings.bikesTab,
               textStyle: context.textTheme.bodyMedium!.copyWith(
@@ -49,7 +49,7 @@ class DashboardScreen extends GetView<DashboardController> {
               ),
             ),
             GButton(
-              padding: EdgeInsets.all(15.r),
+              padding: .all(15.r),
               icon: CupertinoIcons.search,
               text: ConstantStrings.searchTab,
               textStyle: context.textTheme.bodyMedium!.copyWith(
@@ -59,7 +59,7 @@ class DashboardScreen extends GetView<DashboardController> {
             ),
 
             GButton(
-              padding: EdgeInsets.all(15.r),
+              padding: .all(15.r),
               icon: CupertinoIcons.chat_bubble,
               text: ConstantStrings.chatTab,
               textStyle: context.textTheme.bodyMedium!.copyWith(
@@ -68,7 +68,7 @@ class DashboardScreen extends GetView<DashboardController> {
               ),
             ),
             GButton(
-              padding: EdgeInsets.all(15.r),
+              padding: .all(15.r),
               icon: CupertinoIcons.person,
               text: ConstantStrings.profileTab,
               textStyle: context.textTheme.bodyMedium!.copyWith(

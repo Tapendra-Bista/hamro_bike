@@ -5,7 +5,6 @@ import 'package:hamro_bike/common/constant/constant_colors.dart';
 
 import '../../../common/constant/constant_strings.dart';
 
-
 // app version widget
 class AppVersion extends StatelessWidget {
   const AppVersion({super.key});
@@ -13,9 +12,9 @@ class AppVersion extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 11.w),
+      padding: .symmetric(horizontal: 11.w),
       child: Container(
-        padding: EdgeInsets.all(18.w),
+        padding: .all(18.w),
         width: double.infinity,
 
         decoration: BoxDecoration(
@@ -23,7 +22,10 @@ class AppVersion extends StatelessWidget {
           borderRadius: BorderRadius.circular(25.r),
         ),
         child: Center(
-          child: Text(ConstantStrings.appVersionString, style: context.textTheme.bodySmall),
+          child: Text(
+            ConstantStrings.appVersionString,
+            style: context.textTheme.bodySmall,
+          ),
         ),
       ),
     );

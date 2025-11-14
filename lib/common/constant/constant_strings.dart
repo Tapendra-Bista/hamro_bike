@@ -85,6 +85,7 @@ class ConstantStrings {
   // Tooltips
   static const String backButtonTooltip = TooltipStrings.backButtonTooltip;
   static const String creatPostTooltip = TooltipStrings.creatPostTooltip;
+  static const String prefe = TooltipStrings.preferencesTooltip;
 
   // post
   static const String postCreateSuccess = PostStrings.postCreateSuccess;
@@ -92,12 +93,52 @@ class ConstantStrings {
   static const String createPostForAds = PostStrings.createPostForAds;
   static const String fillInDetails = PostStrings.fillInDetails;
   static const String uploadImages = PostStrings.uploadImages;
+  static const String processing = PostStrings.processing;
+  static const String title = PostStrings.title;
+  static const String titleHint = PostStrings.titleHint;
+  static const String vehicleName = PostStrings.vehicleName;
+  static const String vehicleNameHint = PostStrings.vehicleNameHint;
+  static const String price = PostStrings.price;
+  static const String priceHint = PostStrings.priceHint;
+  static const String nextButton = PostStrings.nextButton;
+  static const String location = PostStrings.location;
+  static const String usedDuration = PostStrings.usedDuration;
+
+  static const String description = PostStrings.description;
+  static const String locationHint = PostStrings.locationHint;
+  static const String yearsHint = PostStrings.yearsHint;
+  static const String descriptionHint = PostStrings.descriptionHint;
+  static const String previous = PostStrings.previous;
+  static const String submit = PostStrings.submit;
+  static const String imageWarning = PostStrings.imageWarning;
+  static const String noBikesAvailable =
+      BikesScreenStrings.noBikesAvailable;
 }
 
 // -------- Grouped sections --------
-
+// bikes  Screen 
+class BikesScreenStrings {
+  static const String noBikesAvailable = 'No bikes available';
+}
 //  post
 class PostStrings {
+  static const String imageWarning = 'Please upload at least one image.';
+  static const String submit = "Submit";
+  static const String location = "Location";
+  static const String usedDuration = "Used Duration in Years";
+  static const String description = "Description";
+  static const String locationHint = "Enter location";
+  static const String yearsHint = "Enter years";
+  static const String descriptionHint = "Enter description";
+  static const String previous = "Previous";
+  static const String processing = "Processing...";
+  static const String title = 'Title';
+  static const String titleHint = 'Enter title';
+  static const String vehicleName = 'Vehicle Name';
+  static const String vehicleNameHint = 'Enter vehicle name';
+  static const String price = 'Price';
+  static const String priceHint = 'Enter price';
+  static const String nextButton = "Next";
   static const String postCreateSuccess = "Post created successfully!";
   static const String postCreateFailed =
       "Failed to create post. Please try again.";
@@ -111,6 +152,7 @@ class PostStrings {
 class TooltipStrings {
   static const String backButtonTooltip = "Back";
   static const String creatPostTooltip = "Create Post";
+  static const String preferencesTooltip = "Preferences";
 }
 
 // app related strings

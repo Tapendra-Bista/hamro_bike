@@ -8,16 +8,22 @@ class AuthenticationRepository extends BaseRepository {
   // login with google
   Future<User?> loginWithGoogle() async {
     try {
-      // Sign in with Google using standard API
-      final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
-      if (googleUser == null) return null; // user cancelled
+      // Step 1: Initialize the singleton once
+      await GoogleSignIn.instance.initialize();
 
-      final GoogleSignInAuthentication googleAuth =
-          await googleUser.authentication;
+      // Step 2: Authenticate the user
+      final googleUser = await GoogleSignIn.instance.authenticate(
+        // Optional: request additional scopes right here
+        // scopeHint: ['email', 'profile'],
+      );
 
-      final OAuthCredential credential = GoogleAuthProvider.credential(
-        accessToken: googleAuth.accessToken,
+      // Step 3: Get GoogleAuth tokens
+      final googleAuth = googleUser.authentication;
+
+      // Step 4: Build Firebase credential
+      final credential = GoogleAuthProvider.credential(
         idToken: googleAuth.idToken,
+      
       );
 
       final UserCredential userCredential = await FirebaseAuth.instance

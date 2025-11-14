@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:hamro_bike/common/constant/constant_strings.dart';
 import 'package:hamro_bike/common/extensions/extensions_buildcontext.dart';
 import 'package:hamro_bike/common/extensions/extensions_widget.dart';
 
@@ -41,10 +42,10 @@ class _PartOneState extends State<PartOne> {
     return Form(
       key: formKey,
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: .start,
+        crossAxisAlignment: .start,
         children: [
-          Text('Title'),
+          Text(ConstantStrings.title),
           Gap(10.h),
           CommanTextFormField(
             focusNode: titleFocusNode,
@@ -53,12 +54,12 @@ class _PartOneState extends State<PartOne> {
               widget.controller.title = value.trim();
               titleFocusNode.unfocus();
             },
-            hintText: 'Enter title',
+            hintText: ConstantStrings.titleHint,
             keyboardType: TextInputType.text,
             maxLines: 6,
           ),
           Gap(35.h),
-          Text('Vehicle Name'),
+          Text(ConstantStrings.vehicleName),
 
           Gap(10.h),
           CommanTextFormField(
@@ -68,12 +69,12 @@ class _PartOneState extends State<PartOne> {
               widget.controller.vehicleName = value.trim();
               vehicleNameFocusNode.unfocus();
             },
-            hintText: 'Enter vehicle name',
+            hintText: ConstantStrings.vehicleNameHint,
             keyboardType: TextInputType.text,
             maxLines: 1,
           ),
           Gap(35.h),
-          Text('Price'),
+          Text(ConstantStrings.price),
 
           Gap(10.h),
           CommanTextFormField(
@@ -87,7 +88,7 @@ class _PartOneState extends State<PartOne> {
               }
               priceFocusNode.unfocus();
             },
-            hintText: 'Enter price',
+            hintText: ConstantStrings.priceHint,
             keyboardType: TextInputType.number,
             maxLines: 1,
           ),
@@ -107,7 +108,10 @@ class _PartOneState extends State<PartOne> {
                 widget.controller.currentStep = 1;
               }
             },
-            child: Text("Next", style: context.textTheme.bodyMedium),
+            child: Text(
+              ConstantStrings.nextButton,
+              style: context.textTheme.bodyMedium,
+            ),
           ).center(),
         ],
       ).paddingSymmetric(horizontal: 12.w, vertical: 10.h),

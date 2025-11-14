@@ -28,7 +28,7 @@ class CommanTextFormField extends StatelessWidget {
       focusNode: focusNode,
       onFieldSubmitted: onFieldSubmitted,
       onChanged: onChanged,
-      scrollPadding: EdgeInsets.all(0),
+      scrollPadding: .all(0),
       controller: controller,
       minLines: 1,
       maxLines: maxLines,
@@ -48,7 +48,7 @@ class CommanTextFormField extends StatelessWidget {
           borderRadius: BorderRadius.circular(7.7.r),
           borderSide: BorderSide(color: ConstantColors.primaryTextColor),
         ),
-        contentPadding: EdgeInsets.symmetric(horizontal: 5.w, vertical: 1.h),
+        contentPadding: .symmetric(horizontal: 5.w, vertical: 1.h),
         hintText: hintText,
         hintStyle: context.textTheme.bodySmall,
         border: OutlineInputBorder(

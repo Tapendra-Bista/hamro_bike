@@ -6,10 +6,12 @@ import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:hamro_bike/common/extensions/extensions_buildcontext.dart';
 import 'package:logger/logger.dart';
+
 import '../../../common/constant/constant_strings.dart';
 import '../../../common/extensions/extensions_widget.dart';
 import '../../../routes/routes_name.dart';
-import '../widgets/authentication_widget.dart';
+import '../widgets/authentication_with_google.dart';
+
 // authentication screen
 class AuthenticationScreen extends StatelessWidget {
   const AuthenticationScreen({super.key});
@@ -28,8 +30,8 @@ class AuthenticationScreen extends StatelessWidget {
         body: SingleChildScrollView(
           physics: BouncingScrollPhysics(),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: .start,
+            crossAxisAlignment: .start,
             children: [
               Gap(55.h),
               // logo part
@@ -37,9 +39,9 @@ class AuthenticationScreen extends StatelessWidget {
                 ConstantStrings.appTextLogo,
                 width: 300.w,
                 height: 55.h,
-                fit: BoxFit.contain,
+                fit: .contain,
               ).center(),
-        
+
               Text.rich(
                 TextSpan(
                   text: ConstantStrings.appDescriptionTitle,
@@ -59,13 +61,13 @@ class AuthenticationScreen extends StatelessWidget {
                     ),
                   ],
                 ),
-              ).appPaddingOnly(left:28.w),
+              ).appPaddingOnly(left: 28.w),
               Gap(30.h),
               // bikes Image part
               Image.asset(
                 ConstantStrings.registerationLogo,
                 width: 0.9.sw,
-        
+
                 fit: BoxFit.contain,
               ),
               Gap(125.h),
@@ -99,9 +101,9 @@ class AuthenticationScreen extends StatelessWidget {
                         },
                       text: ConstantStrings.privacyPolicy,
                       style: context.appTextTheme.bodySmall?.copyWith(
-                        fontWeight: FontWeight.bold,
-                        decoration: TextDecoration.underline,
-                        decorationStyle: TextDecorationStyle.solid,
+                        fontWeight: .bold,
+                        decoration: .underline,
+                        decorationStyle: .solid,
                         decorationColor: Colors.white,
                       ),
                     ),

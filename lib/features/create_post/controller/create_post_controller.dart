@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -8,14 +6,14 @@ import 'package:hamro_bike/features/create_post/model/create_post_model.dart';
 import 'package:hamro_bike/features/create_post/repository/create_post_repository.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:logger/logger.dart';
-
-import '../../../common/constant/constant_colors.dart';
-import '../../../common/constant/constant_strings.dart';
+import 'package:uuid/uuid.dart';
 
 class CreatePostController extends GetxController {
   // Instance
   final CreatePostRepository createPostRepository = CreatePostRepository();
   final ImagePicker _imagePicker = ImagePicker();
+  final Logger _logger = Logger();
+  final Uuid _uuid = const Uuid();
 
   // Reactive variables
   final RxBool _isLoading = false.obs;
@@ -53,24 +51,27 @@ class CreatePostController extends GetxController {
   int get currentStep => _currentStep.value;
   List<String> get tempImagePaths => _tempImagePaths;
 
+  // No longer needed; navigation handled by UI after controller returns
+
   /// ✅ Create Post Function
-  Future<void> postData() async {
+  Future<bool> postData() async {
     try {
+      // Start loading immediately (button onPressed context, safe outside build phase)
+      isLoading = true;
       // Ensure user is authenticated
       final uid = FirebaseAuth.instance.currentUser?.uid;
       if (uid == null) {
+        isLoading = false;
         snackbar('Please log in to create a post.', Colors.red);
-        return;
+        return false;
       }
-
-      // Start loading
-      isLoading = true;
 
       // Upload images first
       await uploadImages();
 
       // Prepare post data model
       final createPostModel = CreatePostModel(
+        postId: _uuid.v4(),
         uId: uid,
         title: title,
         vehicleName: vehicleName,
@@ -85,23 +86,15 @@ class CreatePostController extends GetxController {
       // Store post in Firestore
       await createPostRepository.postData(createPostModel);
 
-      // Stop loader
+      // Success: clear loading and let UI decide navigation & snackbar
       isLoading = false;
-      Logger().f('Post created successfully.');
-      // // Safe navigation after a short delay
-      // Future.delayed(const Duration(milliseconds: 100), () {
-      //   Get.toNamed(RoutesName.dashboard);
-      //   // Or: Get.offAllNamed(RoutesName.dashboard); if you want to clear stack
-      // });
-      //       // Show success snackbar
-      snackbar(
-        ConstantStrings.postCreateSuccess,
-        ConstantColors.primaryButtonColor,
-      );
+      // Close create post screen
+      return true;
     } catch (e, s) {
       isLoading = false;
-      Logger().e('Failed to create post: $e', error: e, stackTrace: s);
+      _logger.e('Failed to create post: $e', error: e, stackTrace: s);
       snackbar('Failed to create post: $e', Colors.red);
+      return false;
     }
   }
 
@@ -115,10 +108,9 @@ class CreatePostController extends GetxController {
       );
 
       final selected = paths.map((e) => e.path).toList();
-      // Use _postFrame to safely update reactive list during UI frame
       tempImagePaths = selected;
     } catch (e) {
-      Logger().e('Error picking images: $e');
+      _logger.e('Error picking images: $e');
       snackbar('Error picking images: $e', Colors.red);
     }
   }
@@ -139,26 +131,13 @@ class CreatePostController extends GetxController {
         );
         uploadedUrls.add(imageUrl);
 
-        // Optional: Clean up temporary file
-        final lower = path.toLowerCase();
-        final looksTemp = lower.contains('cache') || lower.contains('tmp');
-        if (looksTemp) {
-          try {
-            final file = File(path);
-            if (await file.exists()) {
-              await file.delete();
-            }
-          } catch (_) {
-            // Ignore cleanup errors
-          }
-        }
+        _logger.d('Uploaded image URL: $imageUrl');
       }
 
-      // Update state safely (after uploads complete)
       imageUrls = uploadedUrls;
       tempImagePaths = [];
     } catch (e) {
-      Logger().e('Error uploading images: $e');
+      _logger.e('Error uploading images: $e');
       snackbar('Error uploading images: $e', Colors.red);
     }
   }

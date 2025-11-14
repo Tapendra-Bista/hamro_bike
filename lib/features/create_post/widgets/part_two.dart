@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:hamro_bike/common/constant/constant_strings.dart';
 import 'package:hamro_bike/common/extensions/extensions_buildcontext.dart';
 
 import '../../../common/widgets/comman_textformfield.dart';
@@ -40,10 +41,10 @@ class _PartTwoState extends State<PartTwo> {
     return Form(
       key: formKey,
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: .start,
+        crossAxisAlignment: .start,
         children: [
-          Text('Location'),
+          Text(ConstantStrings.location),
           Gap(10.h),
           CommanTextFormField(
             focusNode: locationFocusNode,
@@ -53,12 +54,12 @@ class _PartTwoState extends State<PartTwo> {
               usedDurationFocusNode.requestFocus();
               locationFocusNode.unfocus();
             },
-            hintText: 'Enter location',
+            hintText: ConstantStrings.locationHint,
             keyboardType: TextInputType.text,
             maxLines: 6,
           ),
           Gap(35.h),
-          Text('Used Duration in Years'),
+          Text(ConstantStrings.usedDuration),
 
           Gap(10.h),
           CommanTextFormField(
@@ -71,12 +72,12 @@ class _PartTwoState extends State<PartTwo> {
 
               usedDurationFocusNode.unfocus();
             },
-            hintText: 'Enter years',
+            hintText: ConstantStrings.yearsHint,
             keyboardType: TextInputType.number,
             maxLines: 1,
           ),
           Gap(35.h),
-          Text('Description'),
+          Text(ConstantStrings.description),
 
           Gap(10.h),
           CommanTextFormField(
@@ -89,14 +90,14 @@ class _PartTwoState extends State<PartTwo> {
               }
               descriptionFocusNode.unfocus();
             },
-            hintText: 'Enter description',
+            hintText: ConstantStrings.descriptionHint,
             keyboardType: TextInputType.text,
             maxLines: 8,
           ),
 
           Gap(55.h),
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            mainAxisAlignment: .spaceEvenly,
             children: [
               ElevatedButton(
                 style: context.iconButtonTheme.style!.copyWith(
@@ -108,7 +109,10 @@ class _PartTwoState extends State<PartTwo> {
                   ),
                 ),
                 onPressed: () => widget.controller.currentStep = 0,
-                child: Text("Previous", style: context.textTheme.bodyMedium),
+                child: Text(
+                  ConstantStrings.previous,
+                  style: context.textTheme.bodyMedium,
+                ),
               ),
               ElevatedButton(
                 style: context.iconButtonTheme.style!.copyWith(
@@ -124,7 +128,10 @@ class _PartTwoState extends State<PartTwo> {
                     widget.controller.currentStep = 2;
                   }
                 },
-                child: Text("Next", style: context.textTheme.bodyMedium),
+                child: Text(
+                  ConstantStrings.nextButton,
+                  style: context.textTheme.bodyMedium,
+                ),
               ),
             ],
           ),

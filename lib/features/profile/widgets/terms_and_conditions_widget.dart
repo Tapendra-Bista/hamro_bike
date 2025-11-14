@@ -14,9 +14,9 @@ class TermsAndConditions extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 11.w),
+      padding: .symmetric(horizontal: 11.w),
       child: Container(
-        padding: EdgeInsets.all(5.w),
+        padding: .all(5.w),
         width: double.infinity,
 
         decoration: BoxDecoration(
@@ -27,16 +27,19 @@ class TermsAndConditions extends StatelessWidget {
           children: [
             ListTile(
               leading: Container(
-                padding: EdgeInsets.all(12.r),
+                padding: .all(12.r),
                 decoration: BoxDecoration(
                   color: Colors.pink.withValues(alpha: 0.15),
                   borderRadius: BorderRadius.circular(12.r),
                 ),
                 child: Icon(Iconsax.star_copy, color: Colors.pink),
               ),
-              title: Text(ConstantStrings.yourAds, style: context.textTheme.bodyMedium),
+              title: Text(
+                ConstantStrings.yourAds,
+                style: context.textTheme.bodyMedium,
+              ),
               subtitle: Text(
-              ConstantStrings.manageYourAds,
+                ConstantStrings.manageYourAds,
                 style: context.textTheme.bodySmall,
               ),
               trailing: SizedBox(
@@ -50,14 +53,17 @@ class TermsAndConditions extends StatelessWidget {
             ),
             ListTile(
               leading: Container(
-                padding: EdgeInsets.all(12.r),
+                padding: .all(12.r),
                 decoration: BoxDecoration(
                   color: Colors.red.withValues(alpha: 0.15),
                   borderRadius: BorderRadius.circular(12.r),
                 ),
                 child: Icon(Iconsax.heart_copy, color: Colors.red),
               ),
-              title: Text(ConstantStrings.favourites, style: context.textTheme.bodyMedium),
+              title: Text(
+                ConstantStrings.favourites,
+                style: context.textTheme.bodyMedium,
+              ),
               subtitle: Text(
                 ConstantStrings.yourSavedItems,
                 style: context.textTheme.bodySmall,
@@ -74,7 +80,7 @@ class TermsAndConditions extends StatelessWidget {
             ListTile(
               onTap: () => Get.toNamed(RoutesName.termsAndConditions),
               leading: Container(
-                padding: EdgeInsets.all(12.r),
+                padding: .all(12.r),
                 decoration: BoxDecoration(
                   color: Colors.blue.withValues(alpha: 0.15),
                   borderRadius: BorderRadius.circular(12.r),
@@ -109,7 +115,7 @@ class TermsAndConditions extends StatelessWidget {
                 ),
               ),
               leading: Container(
-                padding: EdgeInsets.all(12.r),
+                padding: .all(12.r),
                 decoration: BoxDecoration(
                   color: Colors.orange.withValues(alpha: 0.15),
                   borderRadius: BorderRadius.circular(12.r),
@@ -117,7 +123,7 @@ class TermsAndConditions extends StatelessWidget {
                 child: Icon(Iconsax.lock_copy, color: Colors.orange),
               ),
               title: Text(
-            ConstantStrings.privacyPolicy,
+                ConstantStrings.privacyPolicy,
                 style: context.textTheme.bodyMedium,
               ),
               subtitle: Text(
@@ -136,7 +142,7 @@ class TermsAndConditions extends StatelessWidget {
                 ),
               ),
               leading: Container(
-                padding: EdgeInsets.all(12.r),
+                padding: .all(12.r),
                 decoration: BoxDecoration(
                   color: Colors.green.withValues(alpha: 0.15),
                   borderRadius: BorderRadius.circular(12.r),
@@ -166,7 +172,7 @@ class TermsAndConditions extends StatelessWidget {
                 ),
               ),
               leading: Container(
-                padding: EdgeInsets.all(12.r),
+                padding: .all(12.r),
                 decoration: BoxDecoration(
                   color: Colors.red.withValues(alpha: 0.15),
                   borderRadius: BorderRadius.circular(12.r),

@@ -15,12 +15,12 @@ class AppTheme {
       elevation: 0,
       systemOverlayStyle: const SystemUiOverlayStyle(
         // For Android
-        statusBarIconBrightness: Brightness.light,
+        statusBarIconBrightness:.light,
         // For iOS (counterintuitive): use dark to get light content
-        statusBarBrightness: Brightness.dark,
+        statusBarBrightness:.dark,
         statusBarColor: Colors.transparent,
         systemNavigationBarColor: Colors.black,
-        systemNavigationBarIconBrightness: Brightness.light,
+        systemNavigationBarIconBrightness: .light,
       ),
     ),
 
@@ -29,7 +29,7 @@ class AppTheme {
       bodyLarge: TextStyle(
         color: ConstantColors.primaryTextColor,
         fontSize: 20.sp,
-        fontWeight: FontWeight.w400,
+        fontWeight: .w400,
       ),
       bodyMedium: TextStyle(
         color: ConstantColors.primaryTextColor,
@@ -44,7 +44,7 @@ class AppTheme {
     // IconButton theme
     iconButtonTheme: IconButtonThemeData(
       style: ButtonStyle(
-        padding: WidgetStatePropertyAll(EdgeInsets.all(4.w)),
+        padding: WidgetStatePropertyAll(.all(4.w)),
         iconSize: WidgetStatePropertyAll(25.r),
         backgroundColor: WidgetStatePropertyAll(ConstantColors.containerColor),
         iconColor: WidgetStateProperty.all(ConstantColors.primaryTextColor),

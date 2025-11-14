@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$CreatePostModel {
 
- String get uId; String get title; String get vehicleName; String get description; double get price; String get location; List<String> get imageUrls;@TimestampConverter() DateTime get postDate; double get usedDurationInYears;
+ String get postId; String get uId; String get title; String get vehicleName; String get description; double get price; String get location; String get status; List<String> get imageUrls;@TimestampConverter() DateTime get postDate; double get usedDurationInYears;
 /// Create a copy of CreatePostModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -28,16 +28,16 @@ $CreatePostModelCopyWith<CreatePostModel> get copyWith => _$CreatePostModelCopyW
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is CreatePostModel&&(identical(other.uId, uId) || other.uId == uId)&&(identical(other.title, title) || other.title == title)&&(identical(other.vehicleName, vehicleName) || other.vehicleName == vehicleName)&&(identical(other.description, description) || other.description == description)&&(identical(other.price, price) || other.price == price)&&(identical(other.location, location) || other.location == location)&&const DeepCollectionEquality().equals(other.imageUrls, imageUrls)&&(identical(other.postDate, postDate) || other.postDate == postDate)&&(identical(other.usedDurationInYears, usedDurationInYears) || other.usedDurationInYears == usedDurationInYears));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is CreatePostModel&&(identical(other.postId, postId) || other.postId == postId)&&(identical(other.uId, uId) || other.uId == uId)&&(identical(other.title, title) || other.title == title)&&(identical(other.vehicleName, vehicleName) || other.vehicleName == vehicleName)&&(identical(other.description, description) || other.description == description)&&(identical(other.price, price) || other.price == price)&&(identical(other.location, location) || other.location == location)&&(identical(other.status, status) || other.status == status)&&const DeepCollectionEquality().equals(other.imageUrls, imageUrls)&&(identical(other.postDate, postDate) || other.postDate == postDate)&&(identical(other.usedDurationInYears, usedDurationInYears) || other.usedDurationInYears == usedDurationInYears));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,uId,title,vehicleName,description,price,location,const DeepCollectionEquality().hash(imageUrls),postDate,usedDurationInYears);
+int get hashCode => Object.hash(runtimeType,postId,uId,title,vehicleName,description,price,location,status,const DeepCollectionEquality().hash(imageUrls),postDate,usedDurationInYears);
 
 @override
 String toString() {
-  return 'CreatePostModel(uId: $uId, title: $title, vehicleName: $vehicleName, description: $description, price: $price, location: $location, imageUrls: $imageUrls, postDate: $postDate, usedDurationInYears: $usedDurationInYears)';
+  return 'CreatePostModel(postId: $postId, uId: $uId, title: $title, vehicleName: $vehicleName, description: $description, price: $price, location: $location, status: $status, imageUrls: $imageUrls, postDate: $postDate, usedDurationInYears: $usedDurationInYears)';
 }
 
 
@@ -48,7 +48,7 @@ abstract mixin class $CreatePostModelCopyWith<$Res>  {
   factory $CreatePostModelCopyWith(CreatePostModel value, $Res Function(CreatePostModel) _then) = _$CreatePostModelCopyWithImpl;
 @useResult
 $Res call({
- String uId, String title, String vehicleName, String description, double price, String location, List<String> imageUrls,@TimestampConverter() DateTime postDate, double usedDurationInYears
+ String postId, String uId, String title, String vehicleName, String description, double price, String location, String status, List<String> imageUrls,@TimestampConverter() DateTime postDate, double usedDurationInYears
 });
 
 
@@ -65,14 +65,16 @@ class _$CreatePostModelCopyWithImpl<$Res>
 
 /// Create a copy of CreatePostModel
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? uId = null,Object? title = null,Object? vehicleName = null,Object? description = null,Object? price = null,Object? location = null,Object? imageUrls = null,Object? postDate = null,Object? usedDurationInYears = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? postId = null,Object? uId = null,Object? title = null,Object? vehicleName = null,Object? description = null,Object? price = null,Object? location = null,Object? status = null,Object? imageUrls = null,Object? postDate = null,Object? usedDurationInYears = null,}) {
   return _then(_self.copyWith(
-uId: null == uId ? _self.uId : uId // ignore: cast_nullable_to_non_nullable
+postId: null == postId ? _self.postId : postId // ignore: cast_nullable_to_non_nullable
+as String,uId: null == uId ? _self.uId : uId // ignore: cast_nullable_to_non_nullable
 as String,title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
 as String,vehicleName: null == vehicleName ? _self.vehicleName : vehicleName // ignore: cast_nullable_to_non_nullable
 as String,description: null == description ? _self.description : description // ignore: cast_nullable_to_non_nullable
 as String,price: null == price ? _self.price : price // ignore: cast_nullable_to_non_nullable
 as double,location: null == location ? _self.location : location // ignore: cast_nullable_to_non_nullable
+as String,status: null == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
 as String,imageUrls: null == imageUrls ? _self.imageUrls : imageUrls // ignore: cast_nullable_to_non_nullable
 as List<String>,postDate: null == postDate ? _self.postDate : postDate // ignore: cast_nullable_to_non_nullable
 as DateTime,usedDurationInYears: null == usedDurationInYears ? _self.usedDurationInYears : usedDurationInYears // ignore: cast_nullable_to_non_nullable
@@ -161,10 +163,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String uId,  String title,  String vehicleName,  String description,  double price,  String location,  List<String> imageUrls, @TimestampConverter()  DateTime postDate,  double usedDurationInYears)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String postId,  String uId,  String title,  String vehicleName,  String description,  double price,  String location,  String status,  List<String> imageUrls, @TimestampConverter()  DateTime postDate,  double usedDurationInYears)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _CreatePostModel() when $default != null:
-return $default(_that.uId,_that.title,_that.vehicleName,_that.description,_that.price,_that.location,_that.imageUrls,_that.postDate,_that.usedDurationInYears);case _:
+return $default(_that.postId,_that.uId,_that.title,_that.vehicleName,_that.description,_that.price,_that.location,_that.status,_that.imageUrls,_that.postDate,_that.usedDurationInYears);case _:
   return orElse();
 
 }
@@ -182,10 +184,10 @@ return $default(_that.uId,_that.title,_that.vehicleName,_that.description,_that.
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String uId,  String title,  String vehicleName,  String description,  double price,  String location,  List<String> imageUrls, @TimestampConverter()  DateTime postDate,  double usedDurationInYears)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String postId,  String uId,  String title,  String vehicleName,  String description,  double price,  String location,  String status,  List<String> imageUrls, @TimestampConverter()  DateTime postDate,  double usedDurationInYears)  $default,) {final _that = this;
 switch (_that) {
 case _CreatePostModel():
-return $default(_that.uId,_that.title,_that.vehicleName,_that.description,_that.price,_that.location,_that.imageUrls,_that.postDate,_that.usedDurationInYears);case _:
+return $default(_that.postId,_that.uId,_that.title,_that.vehicleName,_that.description,_that.price,_that.location,_that.status,_that.imageUrls,_that.postDate,_that.usedDurationInYears);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -202,10 +204,10 @@ return $default(_that.uId,_that.title,_that.vehicleName,_that.description,_that.
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String uId,  String title,  String vehicleName,  String description,  double price,  String location,  List<String> imageUrls, @TimestampConverter()  DateTime postDate,  double usedDurationInYears)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String postId,  String uId,  String title,  String vehicleName,  String description,  double price,  String location,  String status,  List<String> imageUrls, @TimestampConverter()  DateTime postDate,  double usedDurationInYears)?  $default,) {final _that = this;
 switch (_that) {
 case _CreatePostModel() when $default != null:
-return $default(_that.uId,_that.title,_that.vehicleName,_that.description,_that.price,_that.location,_that.imageUrls,_that.postDate,_that.usedDurationInYears);case _:
+return $default(_that.postId,_that.uId,_that.title,_that.vehicleName,_that.description,_that.price,_that.location,_that.status,_that.imageUrls,_that.postDate,_that.usedDurationInYears);case _:
   return null;
 
 }
@@ -217,15 +219,17 @@ return $default(_that.uId,_that.title,_that.vehicleName,_that.description,_that.
 @JsonSerializable()
 
 class _CreatePostModel implements CreatePostModel {
-  const _CreatePostModel({required this.uId, required this.title, required this.vehicleName, required this.description, required this.price, required this.location, required final  List<String> imageUrls, @TimestampConverter() required this.postDate, required this.usedDurationInYears}): _imageUrls = imageUrls;
+  const _CreatePostModel({required this.postId, required this.uId, required this.title, required this.vehicleName, required this.description, required this.price, required this.location, this.status = 'available', required final  List<String> imageUrls, @TimestampConverter() required this.postDate, required this.usedDurationInYears}): _imageUrls = imageUrls;
   factory _CreatePostModel.fromJson(Map<String, dynamic> json) => _$CreatePostModelFromJson(json);
 
+@override final  String postId;
 @override final  String uId;
 @override final  String title;
 @override final  String vehicleName;
 @override final  String description;
 @override final  double price;
 @override final  String location;
+@override@JsonKey() final  String status;
  final  List<String> _imageUrls;
 @override List<String> get imageUrls {
   if (_imageUrls is EqualUnmodifiableListView) return _imageUrls;
@@ -249,16 +253,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _CreatePostModel&&(identical(other.uId, uId) || other.uId == uId)&&(identical(other.title, title) || other.title == title)&&(identical(other.vehicleName, vehicleName) || other.vehicleName == vehicleName)&&(identical(other.description, description) || other.description == description)&&(identical(other.price, price) || other.price == price)&&(identical(other.location, location) || other.location == location)&&const DeepCollectionEquality().equals(other._imageUrls, _imageUrls)&&(identical(other.postDate, postDate) || other.postDate == postDate)&&(identical(other.usedDurationInYears, usedDurationInYears) || other.usedDurationInYears == usedDurationInYears));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _CreatePostModel&&(identical(other.postId, postId) || other.postId == postId)&&(identical(other.uId, uId) || other.uId == uId)&&(identical(other.title, title) || other.title == title)&&(identical(other.vehicleName, vehicleName) || other.vehicleName == vehicleName)&&(identical(other.description, description) || other.description == description)&&(identical(other.price, price) || other.price == price)&&(identical(other.location, location) || other.location == location)&&(identical(other.status, status) || other.status == status)&&const DeepCollectionEquality().equals(other._imageUrls, _imageUrls)&&(identical(other.postDate, postDate) || other.postDate == postDate)&&(identical(other.usedDurationInYears, usedDurationInYears) || other.usedDurationInYears == usedDurationInYears));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,uId,title,vehicleName,description,price,location,const DeepCollectionEquality().hash(_imageUrls),postDate,usedDurationInYears);
+int get hashCode => Object.hash(runtimeType,postId,uId,title,vehicleName,description,price,location,status,const DeepCollectionEquality().hash(_imageUrls),postDate,usedDurationInYears);
 
 @override
 String toString() {
-  return 'CreatePostModel(uId: $uId, title: $title, vehicleName: $vehicleName, description: $description, price: $price, location: $location, imageUrls: $imageUrls, postDate: $postDate, usedDurationInYears: $usedDurationInYears)';
+  return 'CreatePostModel(postId: $postId, uId: $uId, title: $title, vehicleName: $vehicleName, description: $description, price: $price, location: $location, status: $status, imageUrls: $imageUrls, postDate: $postDate, usedDurationInYears: $usedDurationInYears)';
 }
 
 
@@ -269,7 +273,7 @@ abstract mixin class _$CreatePostModelCopyWith<$Res> implements $CreatePostModel
   factory _$CreatePostModelCopyWith(_CreatePostModel value, $Res Function(_CreatePostModel) _then) = __$CreatePostModelCopyWithImpl;
 @override @useResult
 $Res call({
- String uId, String title, String vehicleName, String description, double price, String location, List<String> imageUrls,@TimestampConverter() DateTime postDate, double usedDurationInYears
+ String postId, String uId, String title, String vehicleName, String description, double price, String location, String status, List<String> imageUrls,@TimestampConverter() DateTime postDate, double usedDurationInYears
 });
 
 
@@ -286,14 +290,16 @@ class __$CreatePostModelCopyWithImpl<$Res>
 
 /// Create a copy of CreatePostModel
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? uId = null,Object? title = null,Object? vehicleName = null,Object? description = null,Object? price = null,Object? location = null,Object? imageUrls = null,Object? postDate = null,Object? usedDurationInYears = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? postId = null,Object? uId = null,Object? title = null,Object? vehicleName = null,Object? description = null,Object? price = null,Object? location = null,Object? status = null,Object? imageUrls = null,Object? postDate = null,Object? usedDurationInYears = null,}) {
   return _then(_CreatePostModel(
-uId: null == uId ? _self.uId : uId // ignore: cast_nullable_to_non_nullable
+postId: null == postId ? _self.postId : postId // ignore: cast_nullable_to_non_nullable
+as String,uId: null == uId ? _self.uId : uId // ignore: cast_nullable_to_non_nullable
 as String,title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
 as String,vehicleName: null == vehicleName ? _self.vehicleName : vehicleName // ignore: cast_nullable_to_non_nullable
 as String,description: null == description ? _self.description : description // ignore: cast_nullable_to_non_nullable
 as String,price: null == price ? _self.price : price // ignore: cast_nullable_to_non_nullable
 as double,location: null == location ? _self.location : location // ignore: cast_nullable_to_non_nullable
+as String,status: null == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
 as String,imageUrls: null == imageUrls ? _self._imageUrls : imageUrls // ignore: cast_nullable_to_non_nullable
 as List<String>,postDate: null == postDate ? _self.postDate : postDate // ignore: cast_nullable_to_non_nullable
 as DateTime,usedDurationInYears: null == usedDurationInYears ? _self.usedDurationInYears : usedDurationInYears // ignore: cast_nullable_to_non_nullable

@@ -18,9 +18,9 @@ class HamroBike extends StatelessWidget {
       designSize: Size(360, 690),
       minTextAdapt: true,
       splitScreenMode: true,
-      builder: (_, __) {
+      builder: (_, _) {
         return GetMaterialApp(
-          defaultTransition: Transition.fadeIn,
+          defaultTransition: .fadeIn,
           transitionDuration: Duration(milliseconds: 300),
           initialBinding: initialBinding,
           getPages: getPages,
