@@ -11,7 +11,7 @@ import '../repository/authentication_repository.dart';
 // Controller for Authentication feature
 class AuthenticationController extends GetxController {
   final AuthenticationRepository authenticationRepository =
-      AuthenticationRepository();
+      .new();
   // obs variables
   final RxBool _isLoading = false.obs;
   final RxString _errorMessage = ''.obs;

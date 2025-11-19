@@ -15,7 +15,7 @@ class DashboardScreen extends GetView<DashboardController> {
   Widget build(BuildContext context) {
     // Ensure controller is registered when this screen is constructed directly (not via route binding)
     if (!Get.isRegistered<DashboardController>()) {
-      Get.lazyPut<DashboardController>(() => DashboardController());
+      Get.lazyPut<DashboardController>(() => .new());
     }
     return Scaffold(
       body: Obx(() => dashboardPages[controller.selectedIndex]),
@@ -44,7 +44,7 @@ class DashboardScreen extends GetView<DashboardController> {
               icon: Icons.directions_bike_outlined,
               text: ConstantStrings.bikesTab,
               textStyle: context.textTheme.bodyMedium!.copyWith(
-                fontWeight: FontWeight.bold,
+                fontWeight: .bold,
                 color: Colors.white,
               ),
             ),
@@ -53,7 +53,7 @@ class DashboardScreen extends GetView<DashboardController> {
               icon: CupertinoIcons.search,
               text: ConstantStrings.searchTab,
               textStyle: context.textTheme.bodyMedium!.copyWith(
-                fontWeight: FontWeight.bold,
+                fontWeight: .bold,
                 color: Colors.white,
               ),
             ),
@@ -63,7 +63,7 @@ class DashboardScreen extends GetView<DashboardController> {
               icon: CupertinoIcons.chat_bubble,
               text: ConstantStrings.chatTab,
               textStyle: context.textTheme.bodyMedium!.copyWith(
-                fontWeight: FontWeight.bold,
+                fontWeight: .bold,
                 color: Colors.white,
               ),
             ),
@@ -72,7 +72,7 @@ class DashboardScreen extends GetView<DashboardController> {
               icon: CupertinoIcons.person,
               text: ConstantStrings.profileTab,
               textStyle: context.textTheme.bodyMedium!.copyWith(
-                fontWeight: FontWeight.bold,
+                fontWeight: .bold,
                 color: Colors.white,
               ),
             ),

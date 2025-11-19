@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:hamro_bike/common/constant/constant_colors.dart';
 import 'package:hamro_bike/common/extensions/extensions_buildcontext.dart';
-import 'package:hamro_bike/common/extensions/extensions_widget.dart';
+import 'package:hamro_bike/common/widgets/app_logo.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart';
 
 import '../../../common/constant/constant_strings.dart';
@@ -17,7 +17,7 @@ class BikesAppBar extends StatelessWidget {
     return SliverAppBar(
       actions: [
         IconButton(
-          tooltip: ConstantStrings.prefe,
+          tooltip: ConstantStrings.backButtonTooltip,
           style: context.iconButtonTheme.style,
           onPressed: () {},
           icon: Icon(
@@ -33,7 +33,9 @@ class BikesAppBar extends StatelessWidget {
         onPressed: () => Get.toNamed(RoutesName.createPost),
         icon: Icon(Iconsax.add_copy),
       ),
-      title: Text('Location', style: context.appTextTheme.bodyMedium).center(),
+      title: AppLogo(
+        width: 150,
+      ),
       centerTitle: true,
     );
   }

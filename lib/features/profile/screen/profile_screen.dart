@@ -3,8 +3,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:hamro_bike/common/extensions/extensions_widget.dart';
+import 'package:iconsax_flutter/iconsax_flutter.dart';
 import '../../../common/constant/constant_colors.dart';
 import '../../../common/constant/constant_strings.dart';
+import '../../../common/extensions/extensions_buildcontext.dart';
+import '../../../routes/routes_name.dart';
 import '../widgets/connnect_with_us_widget.dart';
 import '../widgets/profile_image_widget.dart';
 import '../widgets/terms_and_conditions_widget.dart';
@@ -17,6 +20,12 @@ class ProfileScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(
+          tooltip: ConstantStrings.creatPostTooltip,
+          style: context.iconButtonTheme.style,
+          onPressed: () => Get.toNamed(RoutesName.createPost),
+          icon: Icon(Iconsax.add_copy),
+        ),
         backgroundColor: ConstantColors.primaryButtonColor,
         bottom: PreferredSize(
           preferredSize: Size(double.infinity, 3.h),

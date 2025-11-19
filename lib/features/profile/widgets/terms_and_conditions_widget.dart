@@ -17,7 +17,7 @@ class TermsAndConditions extends StatelessWidget {
       padding: .symmetric(horizontal: 11.w),
       child: Container(
         padding: .all(5.w),
-        width: double.infinity,
+        width: .infinity,
 
         decoration: BoxDecoration(
           color: ConstantColors.containerColor,

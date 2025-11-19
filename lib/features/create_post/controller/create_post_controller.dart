@@ -10,10 +10,10 @@ import 'package:uuid/uuid.dart';
 
 class CreatePostController extends GetxController {
   // Instance
-  final CreatePostRepository createPostRepository = CreatePostRepository();
-  final ImagePicker _imagePicker = ImagePicker();
-  final Logger _logger = Logger();
-  final Uuid _uuid = const Uuid();
+  final CreatePostRepository createPostRepository = .new();
+  final ImagePicker _imagePicker = .new();
+  final Logger _logger = .new();
+  final Uuid _uuid = .new();
 
   // Reactive variables
   final RxBool _isLoading = false.obs;
@@ -141,4 +141,6 @@ class CreatePostController extends GetxController {
       snackbar('Error uploading images: $e', Colors.red);
     }
   }
+
+
 }

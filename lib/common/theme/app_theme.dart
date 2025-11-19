@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hamro_bike/common/constant/constant_colors.dart';
 
@@ -13,15 +12,6 @@ class AppTheme {
       scrolledUnderElevation: 0,
       backgroundColor: ConstantColors.backgroundColor,
       elevation: 0,
-      systemOverlayStyle: const SystemUiOverlayStyle(
-        // For Android
-        statusBarIconBrightness:.light,
-        // For iOS (counterintuitive): use dark to get light content
-        statusBarBrightness:.dark,
-        statusBarColor: Colors.transparent,
-        systemNavigationBarColor: Colors.black,
-        systemNavigationBarIconBrightness: .light,
-      ),
     ),
 
     // textTheme

@@ -1,6 +1,5 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
@@ -9,6 +8,7 @@ import 'package:logger/logger.dart';
 
 import '../../../common/constant/constant_strings.dart';
 import '../../../common/extensions/extensions_widget.dart';
+import '../../../common/widgets/app_logo.dart';
 import '../../../routes/routes_name.dart';
 import '../widgets/authentication_with_google.dart';
 
@@ -18,102 +18,90 @@ class AuthenticationScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AnnotatedRegion<SystemUiOverlayStyle>(
-      value: const SystemUiOverlayStyle(
-        statusBarColor: Colors.transparent,
-        statusBarIconBrightness: Brightness.light,
-        statusBarBrightness: Brightness.dark,
-        systemNavigationBarColor: Colors.black,
-        systemNavigationBarIconBrightness: Brightness.light,
-      ),
-      child: Scaffold(
-        body: SingleChildScrollView(
-          physics: BouncingScrollPhysics(),
-          child: Column(
-            mainAxisAlignment: .start,
-            crossAxisAlignment: .start,
-            children: [
-              Gap(55.h),
-              // logo part
-              Image.asset(
-                ConstantStrings.appTextLogo,
-                width: 300.w,
-                height: 55.h,
-                fit: .contain,
-              ).center(),
+    return Scaffold(
+      body: SingleChildScrollView(
+        physics: BouncingScrollPhysics(),
+        child: Column(
+          mainAxisAlignment: .start,
+          crossAxisAlignment: .start,
+          children: [
+            Gap(55.h),
+            // logo part
+            AppLogo(),
 
-              Text.rich(
-                TextSpan(
-                  text: ConstantStrings.appDescriptionTitle,
-                  style: context.appTextTheme.bodyLarge?.copyWith(
-                    fontWeight: FontWeight.bold,
-                    decorationStyle: TextDecorationStyle.solid,
-                    decorationColor: Colors.white,
-                  ),
-                  children: [
-                    TextSpan(
-                      text: ConstantStrings.appDescriptionBody,
-                      style: context.appTextTheme.bodyMedium,
-                    ),
-                    TextSpan(
-                      text: ConstantStrings.appDescriptionSubBody,
-                      style: context.appTextTheme.bodyMedium,
-                    ),
-                  ],
+            Text.rich(
+              TextSpan(
+                text: ConstantStrings.appDescriptionTitle,
+                style: context.appTextTheme.bodyLarge?.copyWith(
+                  fontWeight: FontWeight.bold,
+                  decorationStyle: TextDecorationStyle.solid,
+                  decorationColor: Colors.white,
                 ),
-              ).appPaddingOnly(left: 28.w),
-              Gap(30.h),
-              // bikes Image part
-              Image.asset(
-                ConstantStrings.registerationLogo,
-                width: 0.9.sw,
-
-                fit: BoxFit.contain,
+                children: [
+                  TextSpan(
+                    text: ConstantStrings.appDescriptionBody,
+                    style: context.appTextTheme.bodyMedium,
+                  ),
+                  TextSpan(
+                    text: ConstantStrings.appDescriptionSubBody,
+                    style: context.appTextTheme.bodyMedium,
+                  ),
+                ],
               ),
-              Gap(125.h),
-              // google part
-              ContinueWithGoogle(),
-              Gap(8.h),
-              Text.rich(
-                TextSpan(
-                  recognizer: TapGestureRecognizer()
-                    ..onTap = () {
-                      Get.toNamed(RoutesName.userAgreement);
-                      Logger().i("User Agreement and Privacy Policy Tapped");
-                    },
-                  text: ConstantStrings.userAgreement,
-                  style: context.appTextTheme.bodySmall?.copyWith(
-                    fontWeight: FontWeight.bold,
-                    decoration: TextDecoration.underline,
-                    decorationStyle: TextDecorationStyle.solid,
-                    decorationColor: Colors.white,
-                  ),
-                  children: [
-                    TextSpan(
-                      text: ConstantStrings.andString,
-                      style: context.appTextTheme.bodySmall?.copyWith(),
-                    ),
-                    TextSpan(
-                      recognizer: TapGestureRecognizer()
-                        ..onTap = () {
-                          Get.toNamed(RoutesName.privacyPolicy);
-                          Logger().i("Privacy Policy Tapped");
-                        },
-                      text: ConstantStrings.privacyPolicy,
-                      style: context.appTextTheme.bodySmall?.copyWith(
-                        fontWeight: .bold,
-                        decoration: .underline,
-                        decorationStyle: .solid,
-                        decorationColor: Colors.white,
-                      ),
-                    ),
-                  ],
+            ).appPaddingOnly(left: 28.w),
+            Gap(30.h),
+            // bikes Image part
+            Image.asset(
+              ConstantStrings.registerationLogo,
+              width: 0.9.sw,
+
+              fit: BoxFit.contain,
+            ),
+            Gap(125.h),
+            // google part
+            ContinueWithGoogle(),
+            Gap(8.h),
+            Text.rich(
+              TextSpan(
+                recognizer: TapGestureRecognizer()
+                  ..onTap = () {
+                    Get.toNamed(RoutesName.userAgreement);
+                    Logger().i("User Agreement and Privacy Policy Tapped");
+                  },
+                text: ConstantStrings.userAgreement,
+                style: context.appTextTheme.bodySmall?.copyWith(
+                  fontWeight: FontWeight.bold,
+                  decoration: TextDecoration.underline,
+                  decorationStyle: TextDecorationStyle.solid,
+                  decorationColor: Colors.white,
                 ),
-              ).center(),
-            ],
-          ).center().appPaddingSymmetric(h: 12.w, v: 10.h),
-        ).safe(),
-      ),
+                children: [
+                  TextSpan(
+                    text: ConstantStrings.andString,
+                    style: context.appTextTheme.bodySmall?.copyWith(),
+                  ),
+                  TextSpan(
+                    recognizer: TapGestureRecognizer()
+                      ..onTap = () {
+                        Get.toNamed(RoutesName.privacyPolicy);
+                        Logger().i("Privacy Policy Tapped");
+                      },
+                    text: ConstantStrings.privacyPolicy,
+                    style: context.appTextTheme.bodySmall?.copyWith(
+                      fontWeight: .bold,
+                      decoration: .underline,
+                      decorationStyle: .solid,
+                      decorationColor: Colors.white,
+                    ),
+                  ),
+                ],
+              ),
+            ).center(),
+          ],
+        ).center().appPaddingSymmetric(h: 12.w, v: 10.h),
+      ).safe(),
     );
   }
 }
+
+

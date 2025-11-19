@@ -11,9 +11,9 @@ import '../repository/profile_repository.dart';
 
 class ProfileController extends GetxController {
   // instance of ProfileRepository
-  final ProfileRepository profileRepository = ProfileRepository();
+  final ProfileRepository profileRepository = .new();
   // Variables
-  final Rxn<ProfileModel> _userProfile = Rxn<ProfileModel>();
+  final Rxn<ProfileModel> _userProfile = .new();
   final RxBool _shrimmerLoading = false.obs;
   final RxString _errorString = ''.obs;
   final RxBool _isDeleting = false.obs;

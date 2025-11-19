@@ -8,7 +8,7 @@ class CreatePostRepository extends BaseRepository {
   // post
   Future<void> postData(CreatePostModel model) async {
     try {
-      await firestore.collection('posts').add(model.toMap());
+      await firestore.collection('posts').doc(model.postId).set(model.toMap());
 
     } catch (e) {
       rethrow;
@@ -33,7 +33,7 @@ class CreatePostRepository extends BaseRepository {
       final response = await cloudinary.uploadFile(
         CloudinaryFile.fromFile(
           filePath,
-          resourceType: CloudinaryResourceType.Image,
+          resourceType: .Image,
           folder: 'hamro_bike_posts',
         ),
       );

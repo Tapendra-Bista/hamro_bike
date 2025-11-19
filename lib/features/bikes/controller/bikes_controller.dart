@@ -6,9 +6,12 @@ import 'package:hamro_bike/features/create_post/model/create_post_model.dart';
 import 'package:hamro_bike/features/profile/model/profile_model.dart';
 import 'package:logger/web.dart';
 
+import '../../create_post/model/post_like_model.dart';
+
 class BikesController extends GetxController {
   // Instance
-  final BikesRepository _bikesRepository = BikesRepository();
+  final BikesRepository _bikesRepository = .new();
+  final Logger _logger = .new();
 
   // varibles
   final RxList<CreatePostModel> _bikesList = <CreatePostModel>[].obs;
@@ -24,14 +27,15 @@ class BikesController extends GetxController {
   set posterProfile(List<ProfileModel> value) => _posterProfile.value = value;
   set posterProfileMap(Map<String, ProfileModel> value) =>
       _posterProfileMap.value = value;
+      
 
   // getter
   bool get isLoading => _isLoading.value;
   String get errorMessage => _errorMessage.value;
   List<CreatePostModel> get bikesList => _bikesList.toList();
   List<ProfileModel> get posterProfile => _posterProfile.toList();
-  Map<String, ProfileModel> get posterProfileMap =>
-      _posterProfileMap as Map<String, ProfileModel>;
+Map<String, ProfileModel> get posterProfileMap => _posterProfileMap;
+
 
   /// Fetch poster profile if not already cached. Returns the profile or null.
   Future<ProfileModel?> fetchPosterProfileIfNeeded(String uId) async {
@@ -56,7 +60,7 @@ class BikesController extends GetxController {
           .map((b) => b.uId)
           .where((u) => u.isNotEmpty)
           .toSet();
-      final futures = uids.map((uid) => fetchPosterProfileIfNeeded(uid));
+      final futures = uids.map((uid) =>  fetchPosterProfileIfNeeded(uid));
       await Future.wait(futures);
     } catch (e) {
       Logger().e('Error fetching profiles for bikes: $e');
@@ -77,6 +81,41 @@ class BikesController extends GetxController {
       snackbar('Error While fetching bikes :$errorMessage', Colors.red);
     } finally {
       isLoading = false;
+    }
+  }
+
+    // addlike 
+  Future<void> addLike(String postId) async {
+    try {
+      await _bikesRepository.addLike(postId);
+    } catch (e) {
+      _logger.e('Error adding like: $e');
+      snackbar('Error adding like: $e', Colors.red);
+    }
+
+
+
+
+  }
+
+      // remove like
+  Future<void> removeLike(String postId) async {
+    try {       
+      await _bikesRepository.removeLike(postId);
+    } catch (e) {
+      _logger.e('Error removing like: $e');
+      snackbar('Error removing like: $e', Colors.red);
+    }   
+  }
+
+  // getlike
+  Stream<PostLikeModel?> streamLikes(String postId) {
+    try {
+      return _bikesRepository.streamLikes(postId);
+    } catch (e) {
+      _logger.e('Error streaming likes: $e');
+      snackbar('Error streaming likes: $e', Colors.red);
+      return const Stream.empty();
     }
   }
 }

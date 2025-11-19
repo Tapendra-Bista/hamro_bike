@@ -12,29 +12,38 @@ class BikesCarousel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FlutterCarousel(
-      items: bike.imageUrls
-          .map(
-            (path) => CachedNetworkImage(
-              fit: BoxFit.cover,
-              imageUrl: path,
-              progressIndicatorBuilder: (context, url, downloadProgress) =>
-                  SizedBox.shrink(),
-              errorWidget: (context, url, error) => Icon(
-                Icons.error,
-                size: 50.sp,
-                color: ConstantColors.accentColor,
-              ),
-            ).paddingSymmetric(horizontal: 2.w),
-          )
-          .toList(),
-      options: FlutterCarouselOptions(
-        viewportFraction: 1.0,
-        enableInfiniteScroll: false,
-        floatingIndicator: true,
-        indicatorMargin: 1.r,
+    return Hero(
+      createRectTween: (begin, end) => MaterialRectCenterArcTween(
+        begin: begin,
+        end: end,
+      ),
+      tag: bike.postId,
+      child: Material(
+        child: FlutterCarousel(
+          items: bike.imageUrls
+              .map(
+                (path) => CachedNetworkImage(
+                  fit: BoxFit.cover,
+                  imageUrl: path,
+                  progressIndicatorBuilder: (context, url, downloadProgress) =>
+                      SizedBox.shrink(),
+                  errorWidget: (context, url, error) => Icon(
+                    Icons.error,
+                    size: 50.sp,
+                    color: ConstantColors.accentColor,
+                  ),
+                ).paddingSymmetric(horizontal: 2.w),
+              )
+              .toList(),
+          options: FlutterCarouselOptions(
+            viewportFraction: 1.0,
+            enableInfiniteScroll: false,
+            floatingIndicator: true,
+            indicatorMargin: 1.r,
 
-        showIndicator: true,
+            showIndicator: true,
+          ),
+        ),
       ),
     );
   }

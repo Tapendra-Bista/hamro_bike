@@ -91,20 +91,13 @@ class PartThree extends StatelessWidget {
                       snackbar(ConstantStrings.imageWarning, Colors.red);
                       return;
                     }
+                    final BuildContext newContext = context;
                     final success = await controller.postData();
                     if (success) {
-                      // Delay slightly to ensure current build/frame settles (fixes visitChildElements errors
-                      // that can happen when certain parent routes (e.g. SliverAppBar) are mid-build).
-                      Future.delayed(const Duration(milliseconds: 300), () {
+                      // Navigate first
+                      if (newContext.mounted) {
                         Get.offAllNamed(RoutesName.dashboard);
-                        // Show snackbar shortly after navigation
-                        Future.delayed(const Duration(milliseconds: 150), () {
-                          snackbar(
-                            ConstantStrings.postCreateSuccess,
-                            ConstantColors.primaryButtonColor,
-                          );
-                        });
-                      });
+                      }
                     }
                   },
                   child: Text(

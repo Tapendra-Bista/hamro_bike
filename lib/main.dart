@@ -13,14 +13,16 @@ Future<void> main() async {
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
   // status bar color transparent
-  SystemChrome.setSystemUIOverlayStyle(
-    SystemUiOverlayStyle(
-      statusBarColor: Colors.transparent,
-      statusBarIconBrightness: Brightness.light,
-      statusBarBrightness: Brightness.dark,
-      systemNavigationBarColor: Colors.black,
-      systemNavigationBarIconBrightness: Brightness.light,
-    ),
+
+ SystemChrome.setSystemUIOverlayStyle(   SystemUiOverlayStyle(
+        statusBarColor: Colors.transparent,
+        statusBarIconBrightness: .light,
+        statusBarBrightness: .dark,
+        systemNavigationBarColor: Colors.black,
+        systemNavigationBarIconBrightness:.light,
+      )
+  
+  
   );
 
   // protrait mode only

@@ -18,13 +18,13 @@ class PartOne extends StatefulWidget {
 }
 
 class _PartOneState extends State<PartOne> {
-  final TextEditingController titleController = TextEditingController();
-  final TextEditingController vehicleNameController = TextEditingController();
-  final TextEditingController priceController = TextEditingController();
-  final FocusNode titleFocusNode = FocusNode();
-  final FocusNode vehicleNameFocusNode = FocusNode();
-  final FocusNode priceFocusNode = FocusNode();
-  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  final TextEditingController titleController = .new();
+  final TextEditingController vehicleNameController = .new();
+  final TextEditingController priceController = .new();
+  final FocusNode titleFocusNode = .new();
+  final FocusNode vehicleNameFocusNode = .new();
+  final FocusNode priceFocusNode = .new();
+  final GlobalKey<FormState> formKey = .new();
 
   @override
   void dispose() {
@@ -70,7 +70,7 @@ class _PartOneState extends State<PartOne> {
               vehicleNameFocusNode.unfocus();
             },
             hintText: ConstantStrings.vehicleNameHint,
-            keyboardType: TextInputType.text,
+            keyboardType: .text,
             maxLines: 1,
           ),
           Gap(35.h),
@@ -89,7 +89,7 @@ class _PartOneState extends State<PartOne> {
               priceFocusNode.unfocus();
             },
             hintText: ConstantStrings.priceHint,
-            keyboardType: TextInputType.number,
+            keyboardType:.number,
             maxLines: 1,
           ),
 

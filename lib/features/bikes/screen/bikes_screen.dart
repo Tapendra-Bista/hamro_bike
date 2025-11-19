@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:hamro_bike/common/constant/constant_colors.dart';
 import 'package:hamro_bike/features/bikes/controller/bikes_controller.dart';
+import 'package:hamro_bike/features/bikes/screen/bike_detail.dart';
 import 'package:skeletonizer/skeletonizer.dart';
-import '../../../common/widgets/common_divider.dart';
 import '../widgets/bikes_app_bar.dart';
 import '../widgets/bikes_carousel.dart';
 import '../widgets/bikes_empty_text.dart';
@@ -59,32 +60,62 @@ class _BikesScreenState extends State<BikesScreen> {
                               itemCount: bikesController.bikesList.length,
                               itemBuilder: (context, index) {
                                 final bike = bikesController.bikesList[index];
+                                if (bike.uId.isEmpty) {
+                                  return const SizedBox.shrink();
+                                }
                                 final bikePoster =
-                                    bikesController.posterProfileMap[bike.uId];
-                                return Column(
-                                  mainAxisAlignment: .start,
-                                  crossAxisAlignment: .start,
-                                  children: [
-                                    Gap(15.h),
-                                    BikesPoster(
-                                      bike: bike,
-                                      bikePoster: bikePoster!,
+                                    bikesController
+                                        .posterProfileMap[bikesController
+                                        .bikesList[index]
+                                        .uId];
+
+                                return Container(
+                                  margin: .only(bottom: 30.h),
+                                  padding: .symmetric(vertical: 3),
+                                  decoration: BoxDecoration(
+                                    borderRadius: .circular(20.r),
+                                    color: Colors.transparent,
+                                    border: Border(
+                                      bottom: BorderSide(
+                                        color: ConstantColors.dividersColor,
+                                        width: 0.9,
+                                      ),
+                                      top: BorderSide(
+                                        color: ConstantColors.dividersColor,
+                                        width: 0.9,
+                                      ),
                                     ),
+                                  ),
+                                  child: Column(
+                                    mainAxisAlignment: .start,
+                                    crossAxisAlignment: .start,
+                                    children: [
+                                      Gap(5.h),
+                                      if (bikePoster != null)
+                                        BikesPoster(
+                                          bike: bike,
+                                          bikePoster: bikePoster,
+                                        ),
+                                      Gap(15.h),
+                                      // title and description
+                                      BikesTitleAndDescription(bike: bike),
+                                      Gap(2.h),
+                                      // image carousel
+                                      InkWell(
+                                        onTap: () => Get.to(
+                                          () => BikeDetail(bike: bike),
+                                        ),
+                                        child: BikesCarousel(bike: bike),
+                                      ),
 
-                                    Gap(15.h),
-                                    // title and description
-                                    BikesTitleAndDescription(bike: bike),
-
-                                    CommanDivider(),
-                                    Gap(15.h),
-                                    // image carousel
-                                    BikesCarousel(bike: bike),
-                                    Gap(5.h),
-                                    // like and comment
-                                    BikesLikeAndComment(),
-                                    CommanDivider(),
-                                    Gap(30.h),
-                                  ],
+                                      Gap(5.h),
+                                      // like and comment
+                                      BikesLikeAndComment(
+                                        controller: bikesController,
+                                        bike: bike,
+                                      ),
+                                    ],
+                                  ),
                                 );
                               },
                             ),

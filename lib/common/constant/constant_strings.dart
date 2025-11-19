@@ -86,6 +86,7 @@ class ConstantStrings {
   static const String backButtonTooltip = TooltipStrings.backButtonTooltip;
   static const String creatPostTooltip = TooltipStrings.creatPostTooltip;
   static const String prefe = TooltipStrings.preferencesTooltip;
+    static const String chatWithSeller = TooltipStrings.chatWithSeller;
 
   // post
   static const String postCreateSuccess = PostStrings.postCreateSuccess;
@@ -113,12 +114,19 @@ class ConstantStrings {
   static const String imageWarning = PostStrings.imageWarning;
   static const String noBikesAvailable =
       BikesScreenStrings.noBikesAvailable;
+  static const String details = BikesScreenStrings.details;
+  static const String status = BikesScreenStrings.status;
+  static const String chat = BikesScreenStrings.chat;
+
 }
 
 // -------- Grouped sections --------
 // bikes  Screen 
 class BikesScreenStrings {
   static const String noBikesAvailable = 'No bikes available';
+  static const String details = 'Details';
+  static const String status = 'Status';
+  static const String chat = 'Chat';
 }
 //  post
 class PostStrings {
@@ -153,6 +161,7 @@ class TooltipStrings {
   static const String backButtonTooltip = "Back";
   static const String creatPostTooltip = "Create Post";
   static const String preferencesTooltip = "Preferences";
+  static const String chatWithSeller = "Chat with Seller";
 }
 
 // app related strings

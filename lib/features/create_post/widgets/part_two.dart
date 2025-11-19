@@ -17,13 +17,13 @@ class PartTwo extends StatefulWidget {
 }
 
 class _PartTwoState extends State<PartTwo> {
-  final TextEditingController locationController = TextEditingController();
-  final TextEditingController usedDurationController = TextEditingController();
-  final TextEditingController descriptionController = TextEditingController();
-  final FocusNode locationFocusNode = FocusNode();
-  final FocusNode usedDurationFocusNode = FocusNode();
-  final FocusNode descriptionFocusNode = FocusNode();
-  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  final TextEditingController locationController = .new();
+  final TextEditingController usedDurationController = .new();
+  final TextEditingController descriptionController = .new();
+  final FocusNode locationFocusNode = .new();
+  final FocusNode usedDurationFocusNode = .new();
+  final FocusNode descriptionFocusNode = .new();
+  final GlobalKey<FormState> formKey = .new();
 
   @override
   void dispose() {

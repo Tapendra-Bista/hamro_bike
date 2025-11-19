@@ -1,7 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
 import 'package:hamro_bike/common/constant/constant_colors.dart';
 import 'package:hamro_bike/common/extensions/extensions_buildcontext.dart';
 import 'package:hamro_bike/common/widgets/post_created_date.dart';
@@ -76,7 +75,7 @@ class BikesPoster extends StatelessWidget {
         minLeadingWidth: 0,
         minVerticalPadding: 0,
         subtitle: Text(
-          PostCreatedDate.postCreatedDate(bike.postDate).toString(),
+          '${PostCreatedDate.postCreatedDate(bike.postDate)} ago',
           style: context.appTextTheme.bodySmall,
         ),
         title: Text(
@@ -94,7 +93,7 @@ class BikesPoster extends StatelessWidget {
             );
           },
         ),
-      ).paddingOnly(bottom: 0.h),
+      ),
     );
   }
 }

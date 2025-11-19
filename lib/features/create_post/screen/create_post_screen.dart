@@ -89,7 +89,7 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                       padding: .symmetric(horizontal: 18.w, vertical: 14.h),
                       decoration: BoxDecoration(
                         color: ConstantColors.backgroundColor,
-                        borderRadius: BorderRadius.circular(14.r),
+                        borderRadius: .circular(14.r),
                         boxShadow: [
                           BoxShadow(
                             color: ConstantColors.backgroundColor,
@@ -99,7 +99,7 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                         ],
                       ),
                       child: Row(
-                        mainAxisSize: MainAxisSize.min,
+                        mainAxisSize:.min,
                         children: [
                           const CircularProgressIndicator(
                             strokeWidth: 3,
