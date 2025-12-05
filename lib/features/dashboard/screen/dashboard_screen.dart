@@ -18,7 +18,12 @@ class DashboardScreen extends GetView<DashboardController> {
       Get.lazyPut<DashboardController>(() => .new());
     }
     return Scaffold(
-      body: Obx(() => dashboardPages[controller.selectedIndex]),
+      body: Obx(
+        () => IndexedStack(
+          index: controller.selectedIndex,
+          children: dashboardPages,
+        ),
+      ),
       bottomNavigationBar: Obx(
         () => GNav(
           selectedIndex: controller.selectedIndex,

@@ -20,14 +20,14 @@ class AuthenticationScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
-        physics: BouncingScrollPhysics(),
+        physics: const BouncingScrollPhysics(),
         child: Column(
-          mainAxisAlignment: .start,
-          crossAxisAlignment: .start,
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Gap(55.h),
             // logo part
-            AppLogo(),
+            const AppLogo(),
 
             Text.rich(
               TextSpan(
@@ -59,7 +59,7 @@ class AuthenticationScreen extends StatelessWidget {
             ),
             Gap(125.h),
             // google part
-            ContinueWithGoogle(),
+            const ContinueWithGoogle(),
             Gap(8.h),
             Text.rich(
               TextSpan(
@@ -88,9 +88,9 @@ class AuthenticationScreen extends StatelessWidget {
                       },
                     text: ConstantStrings.privacyPolicy,
                     style: context.appTextTheme.bodySmall?.copyWith(
-                      fontWeight: .bold,
-                      decoration: .underline,
-                      decorationStyle: .solid,
+                      fontWeight: FontWeight.bold,
+                      decoration: TextDecoration.underline,
+                      decorationStyle: TextDecorationStyle.solid,
                       decorationColor: Colors.white,
                     ),
                   ),
@@ -103,5 +103,3 @@ class AuthenticationScreen extends StatelessWidget {
     );
   }
 }
-
-

@@ -10,5 +10,7 @@ class RoutesName {
   static const String privacyPolicy = '/privacy-policy';
   static const String aboutUs = '/about-us';
   static const String termsAndConditions = '/terms-and-conditions';
-  
+  static const String yourAds = '/your-ads';
+  static const String favorites = '/favorites';
+  static const String filter = '/filter';
 }

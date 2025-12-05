@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:hamro_bike/common/extensions/extensions_buildcontext.dart';
-import 'package:iconsax_flutter/iconsax_flutter.dart';
+
 import '../../common/constant/constant_strings.dart';
+import '../../common/widgets/comman_back_button.dart';
 
 class UserAgreements extends StatelessWidget {
   const UserAgreements({super.key});
@@ -11,13 +11,7 @@ class UserAgreements extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          style: context.iconButtonTheme.style,
-          onPressed: () => Get.back(),
-          icon: const Icon(Iconsax.arrow_left_copy),
-        ),
-      ),
+      appBar: AppBar(leading: CommanBackButton()),
       body: SingleChildScrollView(
         physics: const BouncingScrollPhysics(),
         child: SafeArea(

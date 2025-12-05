@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hamro_bike/common/constant/constant_colors.dart';
 
@@ -6,12 +7,20 @@ class AppTheme {
   static ThemeData darkTheme = ThemeData(
     scaffoldBackgroundColor: ConstantColors.backgroundColor,
     useMaterial3: true,
+    brightness: Brightness.dark,
     // appBarTheme
     appBarTheme: AppBarTheme(
       centerTitle: true,
       scrolledUnderElevation: 0,
       backgroundColor: ConstantColors.backgroundColor,
       elevation: 0,
+      systemOverlayStyle: SystemUiOverlayStyle(
+        statusBarColor: Colors.transparent,
+        statusBarIconBrightness: Brightness.light,
+        statusBarBrightness: Brightness.dark,
+        systemNavigationBarColor: Colors.black,
+        systemNavigationBarIconBrightness: Brightness.light,
+      ),
     ),
 
     // textTheme

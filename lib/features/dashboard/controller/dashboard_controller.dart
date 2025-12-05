@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hamro_bike/features/bikes/screen/bikes_screen.dart';
+import 'package:hamro_bike/features/chat/screen/chat_screen.dart';
+import 'package:hamro_bike/features/search/screen/search_screen.dart';
 
 import '../../profile/screen/profile_screen.dart';
 
@@ -18,8 +20,8 @@ class DashboardController extends GetxController {
 
 // page  List
 final List<Widget> dashboardPages = [
-  BikesScreen(),
-  Center(child: Text('Search Page')),
-  Center(child: Text('Chat Page')),
-  ProfileScreen(),
+  const BikesScreen(),
+  const SearchScreen(),
+  const ChatScreen(),
+  const ProfileScreen(),
 ];

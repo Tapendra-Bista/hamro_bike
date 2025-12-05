@@ -6,9 +6,10 @@ import 'package:hamro_bike/common/constant/constant_strings.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart';
 
 import '../../../routes/routes_name.dart';
+import '../controller/profile_controller.dart';
 
 // terms and conditions widget
-class TermsAndConditions extends StatelessWidget {
+class TermsAndConditions extends GetView<ProfileController> {
   const TermsAndConditions({super.key});
 
   @override
@@ -26,6 +27,8 @@ class TermsAndConditions extends StatelessWidget {
         child: Column(
           children: [
             ListTile(
+              splashColor: ConstantColors.containerColor,
+              onTap: () => Get.toNamed(RoutesName.yourAds),
               leading: Container(
                 padding: .all(12.r),
                 decoration: BoxDecoration(
@@ -52,6 +55,8 @@ class TermsAndConditions extends StatelessWidget {
               ),
             ),
             ListTile(
+              splashColor: ConstantColors.containerColor,
+              onTap: () => Get.toNamed(RoutesName.favorites),
               leading: Container(
                 padding: .all(12.r),
                 decoration: BoxDecoration(
@@ -78,6 +83,7 @@ class TermsAndConditions extends StatelessWidget {
               ),
             ),
             ListTile(
+              splashColor: ConstantColors.containerColor,
               onTap: () => Get.toNamed(RoutesName.termsAndConditions),
               leading: Container(
                 padding: .all(12.r),
@@ -105,6 +111,7 @@ class TermsAndConditions extends StatelessWidget {
               ),
             ),
             ListTile(
+              splashColor: ConstantColors.containerColor,
               onTap: () => Get.toNamed(RoutesName.privacyPolicy),
               trailing: SizedBox(
                 width: 10.w,
@@ -159,6 +166,7 @@ class TermsAndConditions extends StatelessWidget {
               ),
             ),
             ListTile(
+              onTap: () => controller.deleteAccount(),
               subtitle: Text(
                 ConstantStrings.permanentlyDeleteAccount,
                 style: context.textTheme.bodySmall,

@@ -5,16 +5,22 @@ import 'package:hamro_bike/features/privacy_policy/privacy_policy.dart';
 import 'package:hamro_bike/features/profile/controller/profile_controller.dart';
 import 'package:hamro_bike/features/terms_and_conditions/terms_and_conditions.dart';
 import 'package:hamro_bike/features/user_argreement/user_argreement.dart';
+import 'package:hamro_bike/features/your_ads/binding/your_ads_binding.dart';
+import 'package:hamro_bike/features/your_ads/screen/your_ads_screen.dart';
 import 'package:hamro_bike/routes/routes_name.dart';
 
 // import '../features/authentication/binding/authentication_binding.dart';
 import '../features/authentication/binding/authentication_binding.dart';
 import '../features/authentication/controllers/authentication_controllers.dart';
 import '../features/authentication/screen/authentication_screen.dart';
+import '../features/bikes/screen/favorites_screen.dart';
+import '../features/bikes/screen/filter_screen.dart';
+import '../features/chat/controller/chat_controller.dart';
 import '../features/create_post/binding/create_post_binding.dart';
 import '../features/dashboard/bindings/dashboard_bindings.dart';
 import '../features/dashboard/controller/dashboard_controller.dart';
 import '../features/dashboard/screen/dashboard_screen.dart';
+import '../features/search/controller/search_controller.dart' as search;
 
 List<GetPage<dynamic>>? getPages = [
   // dashboard
@@ -40,12 +46,25 @@ List<GetPage<dynamic>>? getPages = [
   GetPage(name: RoutesName.aboutUs, page: () => AboutUs()),
   // user agreement
   GetPage(name: RoutesName.userAgreement, page: () => UserAgreements()),
-
+  // CreatePost
   GetPage(
     name: RoutesName.createPost,
     page: () => const CreatePostScreen(),
     binding: CreatePostBinding(),
   ),
+
+  // your ads
+  GetPage(
+    name: RoutesName.yourAds,
+    page: () => const YourAdsScreen(),
+    binding: YourAdsBinding(),
+  ),
+
+  // favorites
+  GetPage(name: RoutesName.favorites, page: () => const FavoritesScreen()),
+
+  // filter
+  GetPage(name: RoutesName.filter, page: () => const FilterScreen()),
 ];
 
 // initialBinding
@@ -57,5 +76,10 @@ final initialBinding = BindingsBuilder(() {
   );
   Get.lazyPut<DashboardController>(() => DashboardController(), fenix: true);
   Get.lazyPut<ProfileController>(() => ProfileController(), fenix: true);
+  Get.lazyPut<search.SearchController>(
+    () => search.SearchController(),
+    fenix: true,
+  );
+  Get.lazyPut<ChatController>(() => ChatController(), fenix: true);
   // You can add any global controllers here if needed
 });

@@ -14,15 +14,14 @@ Future<void> main() async {
 
   // status bar color transparent
 
- SystemChrome.setSystemUIOverlayStyle(   SystemUiOverlayStyle(
-        statusBarColor: Colors.transparent,
-        statusBarIconBrightness: .light,
-        statusBarBrightness: .dark,
-        systemNavigationBarColor: Colors.black,
-        systemNavigationBarIconBrightness:.light,
-      )
-  
-  
+  SystemChrome.setSystemUIOverlayStyle(
+    const SystemUiOverlayStyle(
+      statusBarColor: Colors.transparent,
+      statusBarIconBrightness: Brightness.light,
+      statusBarBrightness: Brightness.dark,
+      systemNavigationBarColor: Colors.black,
+      systemNavigationBarIconBrightness: Brightness.light,
+    ),
   );
 
   // protrait mode only

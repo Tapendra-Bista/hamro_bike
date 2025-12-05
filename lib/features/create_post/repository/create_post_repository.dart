@@ -9,7 +9,18 @@ class CreatePostRepository extends BaseRepository {
   Future<void> postData(CreatePostModel model) async {
     try {
       await firestore.collection('posts').doc(model.postId).set(model.toMap());
+    } catch (e) {
+      rethrow;
+    }
+  }
 
+  // update post
+  Future<void> updatePost(CreatePostModel model) async {
+    try {
+      await firestore
+          .collection('posts')
+          .doc(model.postId)
+          .update(model.toMap());
     } catch (e) {
       rethrow;
     }

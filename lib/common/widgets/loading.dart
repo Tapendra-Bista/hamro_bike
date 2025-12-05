@@ -16,7 +16,7 @@ Future<dynamic> loading(BuildContext context, String text) {
           borderRadius: BorderRadius.circular(11.r),
         ),
         child: Row(
-          mainAxisAlignment: .center,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
               text,

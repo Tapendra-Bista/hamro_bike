@@ -4,10 +4,9 @@ import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:hamro_bike/common/constant/constant_colors.dart';
 import 'package:hamro_bike/common/constant/constant_strings.dart';
-import 'package:hamro_bike/common/extensions/extensions_buildcontext.dart';
-import 'package:iconsax_flutter/iconsax_flutter.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
 
+import '../../../common/widgets/comman_back_button.dart';
 import '../controller/create_post_controller.dart';
 import '../widgets/part_one.dart';
 import '../widgets/part_three.dart';
@@ -24,17 +23,30 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
   final CreatePostController controller = Get.find<CreatePostController>();
 
   @override
+  void initState() {
+    super.initState();
+
+    // Check if we're in edit mode
+    final args = Get.arguments;
+    if (args != null && args is Map) {
+      if (args['editMode'] == true && args['post'] != null) {
+        controller.loadPostForEdit(args['post']);
+      }
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(
-          style: context.iconButtonTheme.style,
-          onPressed: () => Get.back(),
-          icon: const Icon(Iconsax.arrow_left_copy),
-        ),
-        title: Text(
-          ConstantStrings.createPostForAds,
-          style: context.textTheme.bodyMedium,
+        leading: const CommanBackButton(),
+        title: Obx(
+          () => Text(
+            controller.isEditMode
+                ? 'Edit Post'
+                : ConstantStrings.createPostForAds,
+            style: context.textTheme.bodyMedium,
+          ),
         ),
       ),
       body: Obx(() {
@@ -68,7 +80,7 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                         children: [
                           // title,price, years , bike name
                           PartOne(controller: controller),
-                          // description, location , 
+                          // description, location ,
                           PartTwo(controller: controller),
                           // images upload
                           PartThree(controller: controller),
@@ -99,7 +111,7 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                         ],
                       ),
                       child: Row(
-                        mainAxisSize:.min,
+                        mainAxisSize: .min,
                         children: [
                           const CircularProgressIndicator(
                             strokeWidth: 3,

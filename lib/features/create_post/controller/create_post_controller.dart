@@ -10,10 +10,10 @@ import 'package:uuid/uuid.dart';
 
 class CreatePostController extends GetxController {
   // Instance
-  final CreatePostRepository createPostRepository = .new();
-  final ImagePicker _imagePicker = .new();
-  final Logger _logger = .new();
-  final Uuid _uuid = .new();
+  final CreatePostRepository createPostRepository = CreatePostRepository();
+  final ImagePicker _imagePicker = ImagePicker();
+  final Logger _logger = Logger();
+  final Uuid _uuid = const Uuid();
 
   // Reactive variables
   final RxBool _isLoading = false.obs;
@@ -26,6 +26,8 @@ class CreatePostController extends GetxController {
   final RxList<String> _tempImagePaths = <String>[].obs;
   final RxDouble _usedDurationInYears = 0.0.obs;
   final RxInt _currentStep = 0.obs;
+  final RxBool _isEditMode = false.obs;
+  final Rxn<String> _editPostId = Rxn<String>();
 
   // Setters
   set isLoading(bool value) => _isLoading.value = value;
@@ -50,8 +52,101 @@ class CreatePostController extends GetxController {
   double get usedDurationInYears => _usedDurationInYears.value;
   int get currentStep => _currentStep.value;
   List<String> get tempImagePaths => _tempImagePaths;
+  bool get isEditMode => _isEditMode.value;
+  String? get editPostId => _editPostId.value;
 
-  // No longer needed; navigation handled by UI after controller returns
+  // Additional setters
+  set isEditMode(bool value) => _isEditMode.value = value;
+  set editPostId(String? value) => _editPostId.value = value;
+
+  @override
+  void onClose() {
+    // Clear image data to prevent memory leaks
+    _imageUrls.clear();
+    _tempImagePaths.clear();
+    resetForm();
+    super.onClose();
+  }
+
+  /// Load post data for editing
+  void loadPostForEdit(CreatePostModel post) {
+    isEditMode = true;
+    editPostId = post.postId;
+    title = post.title;
+    vehicleName = post.vehicleName;
+    description = post.description;
+    price = post.price;
+    location = post.location;
+    imageUrls = List<String>.from(post.imageUrls); // Create mutable copy
+    tempImagePaths = List<String>.from(
+      post.imageUrls,
+    ); // Create mutable copy for editing
+    usedDurationInYears = post.usedDurationInYears;
+  }
+
+  /// Reset form
+  void resetForm() {
+    isEditMode = false;
+    editPostId = null;
+    title = '';
+    vehicleName = '';
+    description = '';
+    price = 0.0;
+    location = '';
+    imageUrls = [];
+    tempImagePaths = [];
+    usedDurationInYears = 0.0;
+    currentStep = 0;
+  }
+
+  /// ✅ Update Post Function
+  Future<bool> updatePost() async {
+    try {
+      isLoading = true;
+
+      // Check if new images were picked (local file paths)
+      final hasNewImages = tempImagePaths.any(
+        (path) => !path.startsWith('http://') && !path.startsWith('https://'),
+      );
+
+      List<String> finalImageUrls;
+
+      if (hasNewImages) {
+        // Upload new images to Cloudinary
+        await uploadImages();
+        finalImageUrls = imageUrls;
+      } else {
+        // Keep existing URLs (no new images picked)
+        finalImageUrls = tempImagePaths;
+      }
+
+      // Prepare updated post data model
+      final updatedPostModel = CreatePostModel(
+        postId: editPostId!,
+        uId: FirebaseAuth.instance.currentUser!.uid,
+        title: title,
+        vehicleName: vehicleName,
+        description: description,
+        price: price,
+        location: location,
+        imageUrls: finalImageUrls,
+        postDate: DateTime.now(),
+        usedDurationInYears: usedDurationInYears,
+      );
+
+      // Update post in Firestore
+      await createPostRepository.updatePost(updatedPostModel);
+
+      isLoading = false;
+      resetForm();
+      return true;
+    } catch (e, s) {
+      isLoading = false;
+      _logger.e('Failed to update post: $e', error: e, stackTrace: s);
+      snackbar('Failed to update post: $e', Colors.red);
+      return false;
+    }
+  }
 
   /// ✅ Create Post Function
   Future<bool> postData() async {
@@ -141,6 +236,4 @@ class CreatePostController extends GetxController {
       snackbar('Error uploading images: $e', Colors.red);
     }
   }
-
-
 }

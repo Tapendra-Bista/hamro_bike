@@ -4,6 +4,7 @@ import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:hamro_bike/common/extensions/extensions_widget.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart';
+
 import '../../../common/constant/constant_colors.dart';
 import '../../../common/constant/constant_strings.dart';
 import '../../../common/extensions/extensions_buildcontext.dart';
@@ -21,10 +22,9 @@ class ProfileScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          tooltip: ConstantStrings.creatPostTooltip,
           style: context.iconButtonTheme.style,
           onPressed: () => Get.toNamed(RoutesName.createPost),
-          icon: Icon(Iconsax.add_copy),
+          icon: const Icon(Iconsax.add_copy),
         ),
         backgroundColor: ConstantColors.primaryButtonColor,
         bottom: PreferredSize(

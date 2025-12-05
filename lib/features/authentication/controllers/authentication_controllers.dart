@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:hamro_bike/common/constant/constant_colors.dart';
 import 'package:hamro_bike/common/widgets/snackbar.dart';
 import 'package:logger/logger.dart';
+
 import '../../../common/constant/constant_strings.dart';
 import '../../../routes/routes_name.dart';
 import '../repository/authentication_repository.dart';
@@ -11,7 +12,7 @@ import '../repository/authentication_repository.dart';
 // Controller for Authentication feature
 class AuthenticationController extends GetxController {
   final AuthenticationRepository authenticationRepository =
-      .new();
+      AuthenticationRepository();
   // obs variables
   final RxBool _isLoading = false.obs;
   final RxString _errorMessage = ''.obs;
@@ -23,17 +24,39 @@ class AuthenticationController extends GetxController {
   // getter
   bool get isLoading => _isLoading.value;
   String get errorMessage => _errorMessage.value;
+  String? get currentUserId => authenticationRepository.auth.currentUser?.uid;
 
   Future<void> continueWithGoogle() async {
     if (isLoading) return; // prevent re-entrancy
     try {
       isLoading = true;
       errorMessage = '';
+
+      // Show loading dialog - use Future.microtask to ensure overlay is ready
+      await Future.microtask(() {
+        if (Get.context != null && !Get.isDialogOpen!) {
+          Get.dialog(
+            WillPopScope(
+              onWillPop: () async => false,
+              child: const Center(
+                child: CircularProgressIndicator(
+                  color: ConstantColors.primaryButtonColor,
+                ),
+              ),
+            ),
+            barrierDismissible: false,
+          );
+        }
+      });
+
       // Call your repository method here
       final user = await authenticationRepository.loginWithGoogle();
       if (user == null) {
         // Sign-in cancelled or failed without user
         errorMessage = 'Google sign-in was cancelled';
+        if (Get.isDialogOpen ?? false) {
+          Get.back();
+        }
         return;
       }
 
@@ -85,12 +108,22 @@ class AuthenticationController extends GetxController {
       // Close the dialog
     } on FirebaseAuthException catch (e) {
       errorMessage = e.message ?? 'Authentication failed';
+      if (Get.isDialogOpen ?? false) {
+        Get.back();
+      }
+      snackbar(errorMessage, Colors.red);
     } on FirebaseException catch (e) {
       // Handles Firestore/Storage exceptions
       errorMessage = e.message ?? 'A Firebase error occurred';
+      if (Get.isDialogOpen ?? false) {
+        Get.back();
+      }
+      snackbar(errorMessage, Colors.red);
     } catch (e) {
       errorMessage = e.toString();
-
+      if (Get.isDialogOpen ?? false) {
+        Get.back();
+      }
       snackbar('Unexpected error in continueWithGoogle: $e', Colors.red);
       Logger().e('Unexpected error in continueWithGoogle: $e');
     } finally {

@@ -75,7 +75,7 @@ class ConstantStrings {
       ProfileStrings.termsAndConditionsDescription;
   static const String privacyPolicyDescription =
       LegalStrings.privacyPolicyDescription;
-
+  static const String noAdsAvailable = ProfileStrings.noAdsAvailable;
   // dashboard tab strings
   static const String bikesTab = DashboardStrings.bikesTab;
   static const String searchTab = DashboardStrings.searchTab;
@@ -86,7 +86,7 @@ class ConstantStrings {
   static const String backButtonTooltip = TooltipStrings.backButtonTooltip;
   static const String creatPostTooltip = TooltipStrings.creatPostTooltip;
   static const String prefe = TooltipStrings.preferencesTooltip;
-    static const String chatWithSeller = TooltipStrings.chatWithSeller;
+  static const String chatWithSeller = TooltipStrings.chatWithSeller;
 
   // post
   static const String postCreateSuccess = PostStrings.postCreateSuccess;
@@ -112,22 +112,55 @@ class ConstantStrings {
   static const String previous = PostStrings.previous;
   static const String submit = PostStrings.submit;
   static const String imageWarning = PostStrings.imageWarning;
-  static const String noBikesAvailable =
-      BikesScreenStrings.noBikesAvailable;
+  static const String noBikesAvailable = BikesScreenStrings.noBikesAvailable;
   static const String details = BikesScreenStrings.details;
   static const String status = BikesScreenStrings.status;
   static const String chat = BikesScreenStrings.chat;
-
 }
 
 // -------- Grouped sections --------
-// bikes  Screen 
+// bikes  Screen
 class BikesScreenStrings {
   static const String noBikesAvailable = 'No bikes available';
   static const String details = 'Details';
   static const String status = 'Status';
   static const String chat = 'Chat';
 }
+
+// Filter Screen
+class FilterStrings {
+  static const String filterBikes = 'Filter Bikes';
+  static const String reset = 'Reset';
+  static const String priceRange = 'Price Range';
+  static const String location = 'Location';
+  static const String allLocations = 'All Locations';
+  static const String kathmandu = 'Kathmandu';
+  static const String pokhara = 'Pokhara';
+  static const String lalitpur = 'Lalitpur';
+  static const String bhaktapur = 'Bhaktapur';
+  static const String chitwan = 'Chitwan';
+  static const String biratnagar = 'Biratnagar';
+  static const String other = 'Other';
+  static const String statusFilter = 'Status';
+  static const String all = 'All';
+  static const String available = 'available';
+  static const String sold = 'sold';
+  static const String maximumUsedDuration = 'Maximum Used Duration';
+  static const String upToYears = 'Up to';
+  static const String years = 'years';
+  static const String applyFilters = 'Apply Filters';
+  static const String npr = 'NPR';
+}
+
+// Comments Section
+class CommentsStrings {
+  static const String comments = 'Comments';
+  static const String noCommentsYet =
+      'No comments yet. Be the first to comment!';
+  static const String addCommentHint = 'Add a comment...';
+  static const String anonymous = 'Anonymous';
+}
+
 //  post
 class PostStrings {
   static const String imageWarning = 'Please upload at least one image.';
@@ -284,6 +317,7 @@ We may update these terms from time to time. Continued use of the app means you 
 }
 
 class ProfileStrings {
+  static const String noAdsAvailable = "No ads available.";
   static const String connectWithUs = "Connect with us";
   static const String facebook = "Facebook Group";
   static const String joinOurCommunity = "Join our community";

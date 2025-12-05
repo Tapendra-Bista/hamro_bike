@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_carousel_widget/flutter_carousel_widget.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -33,15 +34,39 @@ class PartThree extends StatelessWidget {
                 onTap: () => controller.pickImages(),
                 child: controller.tempImagePaths.isNotEmpty
                     ? FlutterCarousel(
-                        items: controller.tempImagePaths
-                            .map(
-                              (path) => Image.file(
-                                File(path),
-                                fit: BoxFit.cover,
-                                key: ValueKey(path),
-                              ).rounded(18.r).paddingSymmetric(horizontal: 5.w),
-                            )
-                            .toList(),
+                        items: controller.tempImagePaths.map((path) {
+                          // Check if path is a URL or local file
+                          final isUrl =
+                              path.startsWith('http://') ||
+                              path.startsWith('https://');
+
+                          Widget imageWidget = isUrl
+                              ? CachedNetworkImage(
+                                  imageUrl: path,
+                                  fit: BoxFit.cover,
+                                  key: ValueKey(path),
+                                  placeholder: (context, url) => Center(
+                                    child: CircularProgressIndicator(
+                                      strokeWidth: 2.w,
+                                      color: ConstantColors.primaryButtonColor,
+                                    ),
+                                  ),
+                                  errorWidget: (context, url, error) =>
+                                      const Icon(
+                                        Icons.error,
+                                        color: Colors.red,
+                                      ),
+                                )
+                              : Image.file(
+                                  File(path),
+                                  fit: BoxFit.cover,
+                                  key: ValueKey(path),
+                                );
+
+                          return imageWidget
+                              .rounded(18.r)
+                              .paddingSymmetric(horizontal: 5.w);
+                        }).toList(),
                         options: FlutterCarouselOptions(
                           height: 250.0.h,
                           floatingIndicator: false,
@@ -87,22 +112,37 @@ class PartThree extends StatelessWidget {
                   ),
                   onPressed: () async {
                     if (controller.isLoading) return;
-                    if (controller.tempImagePaths.isEmpty) {
+                    if (controller.tempImagePaths.isEmpty &&
+                        controller.imageUrls.isEmpty) {
                       snackbar(ConstantStrings.imageWarning, Colors.red);
                       return;
                     }
                     final BuildContext newContext = context;
-                    final success = await controller.postData();
+                    final success = controller.isEditMode
+                        ? await controller.updatePost()
+                        : await controller.postData();
                     if (success) {
+                      snackbar(
+                        controller.isEditMode
+                            ? 'Post updated successfully!'
+                            : ConstantStrings.postCreateSuccess,
+                        ConstantColors.primaryButtonColor,
+                      );
                       // Navigate first
                       if (newContext.mounted) {
-                        Get.offAllNamed(RoutesName.dashboard);
+                        if (controller.isEditMode) {
+                          Get.back(result: true);
+                        } else {
+                          Get.offAllNamed(RoutesName.dashboard);
+                        }
                       }
                     }
                   },
-                  child: Text(
-                    ConstantStrings.submit,
-                    style: context.textTheme.bodyMedium,
+                  child: Obx(
+                    () => Text(
+                      controller.isEditMode ? 'Update' : ConstantStrings.submit,
+                      style: context.textTheme.bodyMedium,
+                    ),
                   ),
                 ),
               ],

@@ -20,14 +20,14 @@ class BikeDetails extends StatelessWidget {
         TableRow(
           children: [
             Padding(
-              padding: EdgeInsets.all(8.0.w),
+              padding: .all(8.0.w),
               child: Text(
                 ConstantStrings.vehicleName,
                 style: context.textTheme.bodyMedium,
               ),
             ),
             Padding(
-              padding: EdgeInsets.all(8.0.w),
+              padding: .all(8.0.w),
               child: Text(
                 bike.vehicleName,
                 style: context.textTheme.bodyMedium,
@@ -38,14 +38,14 @@ class BikeDetails extends StatelessWidget {
         TableRow(
           children: [
             Padding(
-              padding: EdgeInsets.all(8.0.w),
+              padding: .all(8.0.w),
               child: Text(
                 ConstantStrings.status,
                 style: context.textTheme.bodyMedium,
               ),
             ),
             Padding(
-              padding: EdgeInsets.all(8.0.w),
+              padding: .all(8.0.w),
               child: Text(bike.status, style: context.textTheme.bodyMedium),
             ),
           ],
@@ -53,14 +53,14 @@ class BikeDetails extends StatelessWidget {
         TableRow(
           children: [
             Padding(
-              padding: EdgeInsets.all(8.0.w),
+              padding: .all(8.0.w),
               child: Text(
                 ConstantStrings.usedDuration,
                 style: context.textTheme.bodyMedium,
               ),
             ),
             Padding(
-              padding: EdgeInsets.all(8.0.w),
+              padding: .all(8.0.w),
               child: Text(
                 '${bike.usedDurationInYears}',
                 style: context.textTheme.bodyMedium,
@@ -71,14 +71,14 @@ class BikeDetails extends StatelessWidget {
         TableRow(
           children: [
             Padding(
-              padding: EdgeInsets.all(8.0.w),
+              padding: .all(8.0.w),
               child: Text(
                 ConstantStrings.price,
                 style: context.textTheme.bodyMedium,
               ),
             ),
             Padding(
-              padding: EdgeInsets.all(8.0.w),
+              padding: .all(8.0.w),
               child: Text(
                 'Rs. ${bike.price.toString()}',
                 style: context.textTheme.bodyMedium,
@@ -89,14 +89,14 @@ class BikeDetails extends StatelessWidget {
         TableRow(
           children: [
             Padding(
-              padding: EdgeInsets.all(8.0.w),
+              padding: .all(8.0.w),
               child: Text(
                 ConstantStrings.location,
                 style: context.textTheme.bodyMedium,
               ),
             ),
             Padding(
-              padding: EdgeInsets.all(8.0.w),
+              padding: .all(8.0.w),
               child: Text(bike.location, style: context.textTheme.bodyMedium),
             ),
           ],

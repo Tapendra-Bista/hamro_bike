@@ -15,13 +15,13 @@ class HamroBike extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
-      designSize: Size(360, 690),
+      designSize: const Size(360, 690),
       minTextAdapt: true,
       splitScreenMode: true,
       builder: (_, _) {
         return GetMaterialApp(
-          defaultTransition: .fadeIn,
-          transitionDuration: Duration(milliseconds: 300),
+          defaultTransition: Transition.fadeIn,
+          transitionDuration: const Duration(milliseconds: 300),
           initialBinding: initialBinding,
           getPages: getPages,
           debugShowCheckedModeBanner: false,
@@ -35,9 +35,9 @@ class HamroBike extends StatelessWidget {
               if (snapshot.connectionState == ConnectionState.active) {
                 User? user = snapshot.data;
                 if (user == null) {
-                  return AuthenticationScreen();
+                  return const AuthenticationScreen();
                 } else {
-                  return DashboardScreen();
+                  return const DashboardScreen();
                 }
               }
               return Scaffold(backgroundColor: ConstantColors.backgroundColor);

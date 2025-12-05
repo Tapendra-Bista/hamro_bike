@@ -5,7 +5,6 @@ import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:hamro_bike/common/constant/constant_colors.dart';
 import 'package:hamro_bike/common/constant/constant_strings.dart';
-import 'package:hamro_bike/common/widgets/loading.dart';
 import 'package:hamro_bike/features/profile/controller/profile_controller.dart';
 import 'package:intl/intl.dart';
 import 'package:skeletonizer/skeletonizer.dart';
@@ -32,24 +31,6 @@ class _ProfileImageState extends State<ProfileImage> {
       width: double.infinity,
       decoration: BoxDecoration(color: ConstantColors.primaryButtonColor),
       child: Obx(() {
-        // Manage loading dialog based on controller states
-        WidgetsBinding.instance.addPostFrameCallback((_) async {
-          final showLogout = controller.isLoggingOut;
-          final showDelete = controller.isDeletingAccount;
-          if ((showLogout || showDelete) && !(Get.isDialogOpen ?? false)) {
-            await loading(
-              context,
-              showDelete
-                  ? ConstantStrings.deletingAccount
-                  : ConstantStrings.logoutInProgress,
-            );
-          } else if (!showLogout &&
-              !showDelete &&
-              (Get.isDialogOpen ?? false)) {
-            Get.back();
-          }
-        });
-
         final isLoading = controller.shrimmerLoading;
         final profile = controller.userProfile;
         final createdAt = profile?.createdAt;
@@ -94,6 +75,9 @@ class _ProfileImageState extends State<ProfileImage> {
               Gap(25.h),
               ElevatedButton(
                 style: ButtonStyle(
+                  backgroundColor: WidgetStateProperty.all<Color>(
+                    Colors.white.withValues(alpha: 0.7),
+                  ),
                   fixedSize: WidgetStateProperty.all<Size>(Size(150.w, 35.h)),
                 ),
 
